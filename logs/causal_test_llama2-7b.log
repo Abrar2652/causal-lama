@@ -1,0 +1,111 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loaded representations: HL_x=(6000, 32, 4096), HF_x=(260, 32, 4096)
+
+============================================================
+STEP 1: Computing Refusal Contribution Score (RCS)
+============================================================
+
+Layer    RCS          CentDist     IntraStd    
+--------------------------------------------
+0        0.9265       0.0875       0.0944      
+1        0.7944       0.1435       0.1807      
+2        0.8640       0.2911       0.3369      
+3        0.9841       0.5463       0.5551      
+4        0.8334       0.6818       0.8182      
+5        0.8374       1.0331       1.2337      
+6        0.7462       1.2665       1.6973      
+7        0.7542       1.7185       2.2785      
+8        0.7813       1.8777       2.4033      
+9        0.9470       3.6294       3.8326      
+10       1.1016       4.7517       4.3133      
+11       1.2721       6.1958       4.8706      
+12       1.6066       8.8094       5.4834      
+13       2.1708       14.8716      6.8509      
+14       2.3145       16.2689      7.0290      
+15       2.4540       18.9332      7.7151      
+16       2.3547       21.0633      8.9452      
+17       2.3408       22.7246      9.7081      
+18       2.2640       26.2488      11.5940     
+19       2.1985       29.1605      13.2640     
+20       2.0851       33.0474      15.8494     
+21       2.0722       38.0957      18.3846     
+22       2.0544       42.1148      20.4996     
+23       2.0337       44.7678      22.0133     
+24       1.9618       47.4393      24.1821     
+25       1.9582       51.5548      26.3282     
+26       1.9957       57.5034      28.8143     
+27       2.0348       63.2838      31.1003     
+28       2.0131       67.3306      33.4454     
+29       2.0151       71.4897      35.4768     
+30       2.0734       77.8415      37.5430     
+31       1.9037       85.5568      44.9418     
+
+Top-5 RCS layers: [15, 16, 17, 14, 18]
+  Values: [2.454, 2.3547, 2.3408, 2.3145, 2.264]
+
+============================================================
+STEP 2: Layer Grouping (3 groups, method='quantile')
+============================================================
+  Group 0: layers 0-9 (10 layers), rep=layer 3, mean RCS=0.8468
+  Group 1: layers 10-19 (10 layers), rep=layer 15, mean RCS=2.0078
+  Group 2: layers 20-31 (12 layers), rep=layer 20, mean RCS=2.0168
+
+============================================================
+STEP 3: Computing RCS-based Initial Ablation Weights (α_l)
+============================================================
+  α range: [0.3041, 1.0000]
+  Mean α: 0.6717
+
+============================================================
+STEP 4: Generating Visualizations
+============================================================
+[✓] RCS profile saved to logs/rcs_profile_llama2-7b.pdf
+
+============================================================
+STEP 5: Causal Validation (Single-Layer Ablation Sweep)
+============================================================
+
+[RCS Causal] Computing no-ablation baseline ASR...
+Initializing model: llama2-7b on device: cuda:0
+Downloading and loading model meta-llama/Llama-2-7b-chat-hf...
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 20.94it/s]
+Model loaded successfully.
+  0%|          | 0/10 [00:00<?, ?it/s] 10%|█         | 1/10 [00:31<04:45, 31.77s/it] 20%|██        | 2/10 [00:51<03:19, 24.91s/it] 30%|███       | 3/10 [01:10<02:35, 22.24s/it] 40%|████      | 4/10 [01:28<02:01, 20.25s/it] 50%|█████     | 5/10 [01:45<01:35, 19.08s/it] 60%|██████    | 6/10 [02:03<01:15, 18.99s/it] 70%|███████   | 7/10 [02:20<00:54, 18.07s/it] 80%|████████  | 8/10 [02:40<00:37, 18.66s/it] 90%|█████████ | 9/10 [03:01<00:19, 19.48s/it]100%|██████████| 10/10 [03:17<00:00, 18.37s/it]100%|██████████| 10/10 [03:17<00:00, 19.72s/it]
+Completion saved at /nas/home/jahin/causal-lama/runs/llama2-7b/causal_validation/rcs_causal_noablation_harmbench_test_completions(3).json
+[judge] HarmBench backend = hf
+Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:  17%|█▋        | 1/6 [00:00<00:03,  1.43it/s]Loading checkpoint shards:  33%|███▎      | 2/6 [00:01<00:02,  1.36it/s]Loading checkpoint shards:  50%|█████     | 3/6 [00:02<00:03,  1.07s/it]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:05<00:03,  1.74s/it]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:08<00:02,  2.13s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:09<00:00,  1.74s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:09<00:00,  1.59s/it]
+Average HarmBench ASR: 0.0
+Evaluation results saved at /nas/home/jahin/causal-lama/runs/llama2-7b/causal_validation/causal_noablation_results.json
+  → baseline ASR (no ablation) = 0.0000
+
+[RCS Causal] Layer 0/31 (RCS=0.9265)...
+Initializing model: llama2-7b on device: cuda:0
+Downloading and loading model meta-llama/Llama-2-7b-chat-hf...
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 50.35it/s]
+Model loaded successfully.
+  0%|          | 0/10 [00:00<?, ?it/s] 10%|█         | 1/10 [00:27<04:06, 27.33s/it] 20%|██        | 2/10 [00:48<03:09, 23.68s/it] 30%|███       | 3/10 [01:05<02:23, 20.44s/it] 40%|████      | 4/10 [01:22<01:56, 19.34s/it] 50%|█████     | 5/10 [01:38<01:30, 18.01s/it] 60%|██████    | 6/10 [01:54<01:10, 17.52s/it] 70%|███████   | 7/10 [02:20<01:00, 20.32s/it] 80%|████████  | 8/10 [02:43<00:42, 21.14s/it] 90%|█████████ | 9/10 [03:04<00:20, 20.83s/it]100%|██████████| 10/10 [03:22<00:00, 20.24s/it]100%|██████████| 10/10 [03:22<00:00, 20.29s/it]
+Completion saved at /nas/home/jahin/causal-lama/runs/llama2-7b/causal_validation/rcs_causal_layer0_harmbench_test_completions(2).json
+[judge] HarmBench backend = hf
+Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:  17%|█▋        | 1/6 [00:00<00:03,  1.47it/s]Loading checkpoint shards:  33%|███▎      | 2/6 [00:01<00:03,  1.00it/s]Loading checkpoint shards:  50%|█████     | 3/6 [00:05<00:06,  2.19s/it]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:08<00:05,  2.52s/it]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:10<00:02,  2.32s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:10<00:00,  1.63s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:10<00:00,  1.80s/it]
+  → ERROR: CUDA out of memory. Tried to allocate 356.00 MiB. GPU 0 has a total capacity of 47.45 GiB of which 148.38 MiB is free. Including non-PyTorch memory, this process has 47.31 GiB memory in use. Of the allocated memory 47.02 GiB is allocated by PyTorch, and 91.59 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+[RCS Causal] Layer 1/31 (RCS=0.7944)...
+Initializing model: llama2-7b on device: cuda:0
+Downloading and loading model meta-llama/Llama-2-7b-chat-hf...
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 50.81it/s]
+Model loaded successfully.
+  0%|          | 0/10 [00:00<?, ?it/s] 10%|█         | 1/10 [00:22<03:26, 22.96s/it] 20%|██        | 2/10 [00:48<03:15, 24.47s/it] 30%|███       | 3/10 [01:07<02:34, 22.10s/it] 40%|████      | 4/10 [01:29<02:11, 21.92s/it] 50%|█████     | 5/10 [01:50<01:47, 21.48s/it] 60%|██████    | 6/10 [02:11<01:26, 21.53s/it] 70%|███████   | 7/10 [02:31<01:02, 20.80s/it] 80%|████████  | 8/10 [02:54<00:43, 21.57s/it] 90%|█████████ | 9/10 [03:14<00:21, 21.09s/it]100%|██████████| 10/10 [03:29<00:00, 19.35s/it]100%|██████████| 10/10 [03:29<00:00, 20.98s/it]
+Completion saved at /nas/home/jahin/causal-lama/runs/llama2-7b/causal_validation/rcs_causal_layer1_harmbench_test_completions(2).json
+[judge] HarmBench backend = hf
+Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:  17%|█▋        | 1/6 [00:00<00:03,  1.50it/s]Loading checkpoint shards:  33%|███▎      | 2/6 [00:01<00:02,  1.48it/s]Loading checkpoint shards:  50%|█████     | 3/6 [00:02<00:02,  1.48it/s]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:02<00:01,  1.46it/s]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:03<00:00,  1.44it/s]Loading checkpoint shards: 100%|██████████| 6/6 [00:03<00:00,  1.92it/s]Loading checkpoint shards: 100%|██████████| 6/6 [00:03<00:00,  1.66it/s]
+  → ERROR: CUDA out of memory. Tried to allocate 334.00 MiB. GPU 0 has a total capacity of 47.45 GiB of which 288.38 MiB is free. Including non-PyTorch memory, this process has 47.17 GiB memory in use. Of the allocated memory 46.87 GiB is allocated by PyTorch, and 111.06 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+[RCS Causal] Layer 2/31 (RCS=0.8640)...
+Initializing model: llama2-7b on device: cuda:0
+Downloading and loading model meta-llama/Llama-2-7b-chat-hf...
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 53.62it/s]
+Model loaded successfully.
+  0%|          | 0/10 [00:00<?, ?it/s] 10%|█         | 1/10 [00:19<02:55, 19.51s/it] 20%|██        | 2/10 [00:40<02:43, 20.48s/it] 30%|███       | 3/10 [00:59<02:18, 19.72s/it] 40%|████      | 4/10 [01:17<01:53, 18.85s/it] 50%|█████     | 5/10 [01:34<01:32, 18.45s/it] 60%|██████    | 6/10 [01:53<01:14, 18.56s/it] 70%|███████   | 7/10 [02:09<00:53, 17.68s/it] 80%|████████  | 8/10 [02:28<00:36, 18.14s/it] 90%|█████████ | 9/10 [02:49<00:19, 19.17s/it]100%|██████████| 10/10 [03:05<00:00, 18.09s/it]100%|██████████| 10/10 [03:05<00:00, 18.56s/it]
+Completion saved at /nas/home/jahin/causal-lama/runs/llama2-7b/causal_validation/rcs_causal_layer2_harmbench_test_completions(2).json
+[judge] HarmBench backend = hf
+Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:  17%|█▋        | 1/6 [00:00<00:03,  1.48it/s]Loading checkpoint shards:  33%|███▎      | 2/6 [00:01<00:02,  1.57it/s]Loading checkpoint shards:  50%|█████     | 3/6 [00:01<00:01,  1.66it/s]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:02<00:01,  1.68it/s]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:03<00:00,  1.59it/s]Loading checkpoint shards: 100%|██████████| 6/6 [00:03<00:00,  2.10it/s]Loading checkpoint shards: 100%|██████████| 6/6 [00:03<00:00,  1.82it/s]

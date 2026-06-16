@@ -1,0 +1,59 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loaded representations: HL_x=(6000, 42, 3584), HF_x=(260, 42, 3584)
+Initializing model: gemma2-9b on device: cuda:0
+Downloading and loading model google/gemma-2-9b-it...
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:01,  1.54it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.51it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.48it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:02<00:00,  1.67it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:02<00:00,  1.60it/s]
+Model loaded successfully.
+Model already loaded.
+refusal_token_id=[235285]  prompts=159
+baseline P_refuse (no ablation) = 0.9817
+  layer  0  RCS=0.437  P_refuse=0.9809  ΔP=+0.0008
+  layer  1  RCS=0.588  P_refuse=0.9820  ΔP=-0.0003
+  layer  2  RCS=0.604  P_refuse=0.9814  ΔP=+0.0003
+  layer  3  RCS=0.614  P_refuse=0.9828  ΔP=-0.0011
+  layer  4  RCS=0.638  P_refuse=0.9819  ΔP=-0.0002
+  layer  5  RCS=0.668  P_refuse=0.9803  ΔP=+0.0014
+  layer  6  RCS=0.627  P_refuse=0.9804  ΔP=+0.0013
+  layer  7  RCS=0.635  P_refuse=0.9816  ΔP=+0.0001
+  layer  8  RCS=0.713  P_refuse=0.9789  ΔP=+0.0028
+  layer  9  RCS=0.685  P_refuse=0.9798  ΔP=+0.0019
+  layer 10  RCS=0.748  P_refuse=0.9805  ΔP=+0.0012
+  layer 11  RCS=0.750  P_refuse=0.9791  ΔP=+0.0026
+  layer 12  RCS=0.784  P_refuse=0.9737  ΔP=+0.0080
+  layer 13  RCS=0.911  P_refuse=0.9743  ΔP=+0.0074
+  layer 14  RCS=0.929  P_refuse=0.9756  ΔP=+0.0061
+  layer 15  RCS=0.939  P_refuse=0.9782  ΔP=+0.0035
+  layer 16  RCS=0.977  P_refuse=0.9752  ΔP=+0.0065
+  layer 17  RCS=1.037  P_refuse=0.9675  ΔP=+0.0142
+  layer 18  RCS=1.051  P_refuse=0.9741  ΔP=+0.0076
+  layer 19  RCS=1.085  P_refuse=0.9704  ΔP=+0.0113
+  layer 20  RCS=1.081  P_refuse=0.9708  ΔP=+0.0109
+  layer 21  RCS=1.208  P_refuse=0.9575  ΔP=+0.0242
+  layer 22  RCS=1.272  P_refuse=0.9738  ΔP=+0.0079
+  layer 23  RCS=1.391  P_refuse=0.9674  ΔP=+0.0143
+  layer 24  RCS=1.477  P_refuse=0.9707  ΔP=+0.0110
+  layer 25  RCS=1.559  P_refuse=0.9624  ΔP=+0.0193
+  layer 26  RCS=1.645  P_refuse=0.9648  ΔP=+0.0169
+  layer 27  RCS=1.762  P_refuse=0.9726  ΔP=+0.0091
+  layer 28  RCS=1.791  P_refuse=0.9726  ΔP=+0.0091
+  layer 29  RCS=1.821  P_refuse=0.9748  ΔP=+0.0069
+  layer 30  RCS=1.875  P_refuse=0.9791  ΔP=+0.0026
+  layer 31  RCS=1.812  P_refuse=0.9807  ΔP=+0.0010
+  layer 32  RCS=1.794  P_refuse=0.9808  ΔP=+0.0009
+  layer 33  RCS=1.792  P_refuse=0.9784  ΔP=+0.0033
+  layer 34  RCS=1.824  P_refuse=0.9789  ΔP=+0.0028
+  layer 35  RCS=1.871  P_refuse=0.9806  ΔP=+0.0011
+  layer 36  RCS=1.854  P_refuse=0.9795  ΔP=+0.0022
+  layer 37  RCS=1.832  P_refuse=0.9803  ΔP=+0.0014
+  layer 38  RCS=1.897  P_refuse=0.9758  ΔP=+0.0059
+  layer 39  RCS=1.800  P_refuse=0.9797  ΔP=+0.0020
+  layer 40  RCS=1.818  P_refuse=0.9715  ΔP=+0.0102
+  layer 41  RCS=1.669  P_refuse=0.9812  ΔP=+0.0005
+
+================ CAUSAL (refusal-prob) ================
+Spearman(RCS, ΔP_refuse)      = 0.3133  (p=4.33e-02)  95%CI[-0.036,0.592]
+Spearman(norm, ΔP_refuse)     = 0.3847
+partial(RCS,ΔP | norm)        = -0.2190  (p=1.64e-01)  <-- NON-CIRCULARITY
+baseline P_refuse=0.982  ΔP range [-0.001,+0.024]
+VERDICT: WEAK; non-circularity weak
+saved -> logs/causal_refusalprob_gemma2-9b.json

@@ -1,0 +1,152 @@
+/nas/home/jahin/causal-lama/lama_optuna_search.py:296: ExperimentalWarning: Argument ``multivariate`` is an experimental feature. The interface can change in the future.
+  sampler = optuna.samplers.TPESampler(
+/nas/home/jahin/causal-lama/lama_optuna_search.py:296: ExperimentalWarning: Argument ``group`` is an experimental feature. The interface can change in the future.
+  sampler = optuna.samplers.TPESampler(
+[I 2026-06-04 07:34:44,631] A new study created in memory with name: lama_llama2-7b
+Loaded representations: HL_x=(6000, 32, 4096), HF_x=(260, 32, 4096)
+[✓] Loaded group 0: 16 directions from /nas/home/jahin/causal-lama/runs/llama2-7b/generate_directions/lama_som4x4_sigma0.33_groups3_group0_directions.pt
+[✓] Loaded group 1: 16 directions from /nas/home/jahin/causal-lama/runs/llama2-7b/generate_directions/lama_som4x4_sigma0.33_groups3_group1_directions.pt
+[✓] Loaded group 2: 16 directions from /nas/home/jahin/causal-lama/runs/llama2-7b/generate_directions/lama_som4x4_sigma0.33_groups3_group2_directions.pt
+
+============================================================
+LAMA Bayesian Optimization
+  Model: llama2-7b
+  Groups: 3
+  Dirs per group: 3
+  Trials: 48
+  Optimize α: True
+  Seed: 42
+  Directions pre-loaded: 48 total
+============================================================
+
+  0%|          | 0/48 [00:00<?, ?it/s]`torch_dtype` is deprecated! Use `dtype` instead!
+Initializing model: llama2-7b on device: cuda:0
+Downloading and loading model meta-llama/Llama-2-7b-chat-hf...
+
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s][ALoading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 39.18it/s]
+Model loaded successfully.
+✓ Adaptive weights ablated (3 groups, 32 layers, group-α={0: 0.331, 1: 0.649, 2: 0.678}).
+Created folder: /nas/home/jahin/causal-lama/runs/llama2-7b/lama_val_optim_completions
+
+  0%|          | 0/3 [00:00<?, ?it/s][A
+ 33%|███▎      | 1/3 [00:42<01:25, 42.68s/it][A
+ 67%|██████▋   | 2/3 [02:09<01:08, 68.53s/it][A
+100%|██████████| 3/3 [02:42<00:00, 52.47s/it][A100%|██████████| 3/3 [02:42<00:00, 54.23s/it]
+Completion saved at /nas/home/jahin/causal-lama/runs/llama2-7b/lama_val_optim_completions/lama_lama_som4x4_sigma0.33_groups3_g0:5-15-11_g1:9-2-3_g2:0-13-9_harmbench_val_completions.json
+[judge] HarmBench backend = hf
+
+Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s][A
+Loading checkpoint shards:  17%|█▋        | 1/6 [00:00<00:03,  1.38it/s][A
+Loading checkpoint shards:  33%|███▎      | 2/6 [00:01<00:02,  1.41it/s][A
+Loading checkpoint shards:  50%|█████     | 3/6 [00:02<00:02,  1.43it/s][A
+Loading checkpoint shards:  67%|██████▋   | 4/6 [00:02<00:01,  1.44it/s][A
+Loading checkpoint shards:  83%|████████▎ | 5/6 [00:03<00:00,  1.41it/s][A
+Loading checkpoint shards: 100%|██████████| 6/6 [00:03<00:00,  1.89it/s][ALoading checkpoint shards: 100%|██████████| 6/6 [00:03<00:00,  1.62it/s]
+                                        0%|          | 0/48 [03:14<?, ?it/s]Best trial: 0. Best value: 0:   0%|          | 0/48 [03:14<?, ?it/s]Best trial: 0. Best value: 0:   2%|▏         | 1/48 [03:14<2:32:06, 194.18s/it]Average HarmBench ASR: 0.0
+Evaluation results saved at ./runs/llama2-7b/lama_val_optim_evaluations/lama_lama_som4x4_sigma0.33_groups3_g0:5-15-11_g1:9-2-3_g2:0-13-9_results.json
+[I 2026-06-04 07:37:58,820] Trial 0 finished with value: 0.0 and parameters: {'g0_dir0': 5, 'g0_dir1': 15, 'g0_dir2': 11, 'g1_dir0': 9, 'g1_dir1': 2, 'g1_dir2': 2, 'g2_dir0': 0, 'g2_dir1': 13, 'g2_dir2': 9, 'alpha_0': 0.5505457213927245, 'alpha_1': 0.014897388774150016, 'alpha_2': 0.7294468160364953, 'alpha_3': 0.6669728464891487, 'alpha_4': 0.15704413658759056, 'alpha_5': 0.1347734416351703, 'alpha_6': 0.12912652977306885, 'alpha_7': 0.2151998905890562, 'alpha_8': 0.37697432174708245, 'alpha_9': 0.33945936754540446, 'alpha_10': 0.2818915624763932, 'alpha_11': 0.6078501867516252, 'alpha_12': 0.35863008622471226, 'alpha_13': 0.635147562970131, 'alpha_14': 0.7105286574022128, 'alpha_15': 0.7824279936868144, 'alpha_16': 0.9053749867617664, 'alpha_17': 0.6429382448671411, 'alpha_18': 0.7680764597629186, 'alpha_19': 0.7945209185501194, 'alpha_20': 0.4752236647319876, 'alpha_21': 0.7819469858487306, 'alpha_22': 0.5331398707315004, 'alpha_23': 0.4658676333890522, 'alpha_24': 0.9693005810909292, 'alpha_25': 0.97930816514719, 'alpha_26': 0.8875700369831949, 'alpha_27': 0.6030572433530932, 'alpha_28': 0.4769571899819579, 'alpha_29': 0.8172154718095328, 'alpha_30': 0.6892237601718998, 'alpha_31': 0.4519338348085124}. Best is trial 0 with value: 0.0.
+Initializing model: llama2-7b on device: cuda:0
+Downloading and loading model meta-llama/Llama-2-7b-chat-hf...
+
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s][ALoading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 54.65it/s]
+Model loaded successfully.
+✓ Adaptive weights ablated (3 groups, 32 layers, group-α={0: 0.435, 1: 0.681, 2: 0.714}).
+
+  0%|          | 0/3 [00:00<?, ?it/s][A
+ 33%|███▎      | 1/3 [00:18<00:36, 18.01s/it][A
+ 67%|██████▋   | 2/3 [00:45<00:23, 23.66s/it][A
+100%|██████████| 3/3 [01:05<00:00, 21.72s/it][A100%|██████████| 3/3 [01:05<00:00, 21.68s/it]
+Completion saved at /nas/home/jahin/causal-lama/runs/llama2-7b/lama_val_optim_completions/lama_lama_som4x4_sigma0.33_groups3_g0:7-0-14_g1:4-10-5_g2:8-9-2_harmbench_val_completions.json
+[judge] HarmBench backend = hf
+
+Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s][A
+Loading checkpoint shards:  17%|█▋        | 1/6 [00:00<00:03,  1.42it/s][A
+Loading checkpoint shards:  33%|███▎      | 2/6 [00:01<00:02,  1.59it/s][A
+Loading checkpoint shards:  50%|█████     | 3/6 [00:01<00:01,  1.68it/s][A
+Loading checkpoint shards:  67%|██████▋   | 4/6 [00:02<00:01,  1.70it/s][A
+Loading checkpoint shards:  83%|████████▎ | 5/6 [00:02<00:00,  1.71it/s][A
+Loading checkpoint shards: 100%|██████████| 6/6 [00:03<00:00,  2.27it/s][ALoading checkpoint shards: 100%|██████████| 6/6 [00:03<00:00,  1.90it/s]
+                                                                               Best trial: 0. Best value: 0:   2%|▏         | 1/48 [04:45<2:32:06, 194.18s/it]Best trial: 0. Best value: 0:   2%|▏         | 1/48 [04:45<2:32:06, 194.18s/it]Best trial: 0. Best value: 0:   4%|▍         | 2/48 [04:45<1:42:41, 133.94s/it]Average HarmBench ASR: 0.0
+Evaluation results saved at ./runs/llama2-7b/lama_val_optim_evaluations/lama_lama_som4x4_sigma0.33_groups3_g0:7-0-14_g1:4-10-5_g2:8-9-2_results.json
+[I 2026-06-04 07:39:30,588] Trial 1 finished with value: 0.0 and parameters: {'g0_dir0': 7, 'g0_dir1': 0, 'g0_dir2': 14, 'g1_dir0': 4, 'g1_dir1': 10, 'g1_dir2': 4, 'g2_dir0': 8, 'g2_dir1': 8, 'g2_dir2': 2, 'alpha_0': 0.753878465404562, 'alpha_1': 0.5609783196650991, 'alpha_2': 0.706575472004994, 'alpha_3': 0.7168806141909303, 'alpha_4': 0.4422015597512431, 'alpha_5': 0.6833173975900673, 'alpha_6': 0.06230342814379055, 'alpha_7': 0.13862470293298218, 'alpha_8': 0.03249036225907214, 'alpha_9': 0.2556724202339652, 'alpha_10': 0.3598500820695453, 'alpha_11': 0.3354470963928383, 'alpha_12': 0.8723511617576599, 'alpha_13': 0.6684490469959009, 'alpha_14': 0.6715020225762586, 'alpha_15': 0.8170784332632994, 'alpha_16': 0.621597019069517, 'alpha_17': 0.9117511189212143, 'alpha_18': 0.558154163240851, 'alpha_19': 0.993389213606588, 'alpha_20': 0.8746572208713834, 'alpha_21': 0.5547963590740326, 'alpha_22': 0.44027055371613166, 'alpha_23': 0.8945738361487243, 'alpha_24': 0.823938104447228, 'alpha_25': 0.8368440316136248, 'alpha_26': 0.8657843917600021, 'alpha_27': 0.47144298782606603, 'alpha_28': 0.6281286511548031, 'alpha_29': 0.48821292161032476, 'alpha_30': 0.9240075161968417, 'alpha_31': 0.7648444849832734}. Best is trial 0 with value: 0.0.
+Initializing model: llama2-7b on device: cuda:0
+Downloading and loading model meta-llama/Llama-2-7b-chat-hf...
+
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s][ALoading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 54.03it/s]
+Model loaded successfully.
+✓ Adaptive weights ablated (3 groups, 32 layers, group-α={0: 0.332, 1: 0.668, 2: 0.799}).
+
+  0%|          | 0/3 [00:00<?, ?it/s][A
+ 33%|███▎      | 1/3 [00:13<00:26, 13.48s/it][A
+ 67%|██████▋   | 2/3 [00:38<00:20, 20.43s/it][A
+100%|██████████| 3/3 [00:55<00:00, 18.75s/it][A100%|██████████| 3/3 [00:55<00:00, 18.51s/it]
+Completion saved at /nas/home/jahin/causal-lama/runs/llama2-7b/lama_val_optim_completions/lama_lama_som4x4_sigma0.33_groups3_g0:5-1-4_g1:5-11-10_g2:14-7-1_harmbench_val_completions.json
+[judge] HarmBench backend = hf
+
+Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s][A
+Loading checkpoint shards:  17%|█▋        | 1/6 [00:00<00:03,  1.64it/s][A
+Loading checkpoint shards:  33%|███▎      | 2/6 [00:01<00:02,  1.68it/s][A
+Loading checkpoint shards:  50%|█████     | 3/6 [00:01<00:01,  1.72it/s][A
+Loading checkpoint shards:  67%|██████▋   | 4/6 [00:02<00:01,  1.73it/s][A
+Loading checkpoint shards:  83%|████████▎ | 5/6 [00:02<00:00,  1.72it/s][A
+Loading checkpoint shards: 100%|██████████| 6/6 [00:03<00:00,  2.30it/s][ALoading checkpoint shards: 100%|██████████| 6/6 [00:03<00:00,  1.95it/s]
+                                                                               Best trial: 0. Best value: 0:   4%|▍         | 2/48 [06:06<1:42:41, 133.94s/it]Best trial: 0. Best value: 0:   4%|▍         | 2/48 [06:06<1:42:41, 133.94s/it]Best trial: 0. Best value: 0:   6%|▋         | 3/48 [06:06<1:22:02, 109.38s/it]Average HarmBench ASR: 0.0
+Evaluation results saved at ./runs/llama2-7b/lama_val_optim_evaluations/lama_lama_som4x4_sigma0.33_groups3_g0:5-1-4_g1:5-11-10_g2:14-7-1_results.json
+[I 2026-06-04 07:40:50,740] Trial 2 finished with value: 0.0 and parameters: {'g0_dir0': 5, 'g0_dir1': 1, 'g0_dir2': 4, 'g1_dir0': 5, 'g1_dir1': 11, 'g1_dir2': 10, 'g2_dir0': 14, 'g2_dir1': 7, 'g2_dir2': 1, 'alpha_0': 0.554567255144275, 'alpha_1': 0.5505945630696253, 'alpha_2': 0.422123627024024, 'alpha_3': 0.6177924778124599, 'alpha_4': 0.3652068751446166, 'alpha_5': 0.387463303602622, 'alpha_6': 0.3010116167830418, 'alpha_7': 0.017979729708100193, 'alpha_8': 0.07750700146087958, 'alpha_9': 0.02469974426195556, 'alpha_10': 0.558036579328984, 'alpha_11': 0.36985265583478294, 'alpha_12': 0.6337179259718297, 'alpha_13': 0.9523566542492872, 'alpha_14': 0.6570465587860901, 'alpha_15': 0.7641531692142519, 'alpha_16': 0.8923259384684015, 'alpha_17': 0.6559319506814802, 'alpha_18': 0.5593139902232731, 'alpha_19': 0.6419371059241965, 'alpha_20': 0.5383866504192492, 'alpha_21': 0.9609391318144654, 'alpha_22': 0.892002953963214, 'alpha_23': 0.7905650005319622, 'alpha_24': 0.9227990479385542, 'alpha_25': 0.8817973442941266, 'alpha_26': 0.5226898098895159, 'alpha_27': 0.9386701585022821, 'alpha_28': 0.7329754161595821, 'alpha_29': 0.8885350168258763, 'alpha_30': 0.9423193731612647, 'alpha_31': 0.5742648085819457}. Best is trial 0 with value: 0.0.
+Initializing model: llama2-7b on device: cuda:0
+Downloading and loading model meta-llama/Llama-2-7b-chat-hf...
+
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s][ALoading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 54.45it/s]
+Model loaded successfully.
+✓ Adaptive weights ablated (3 groups, 32 layers, group-α={0: 0.404, 1: 0.623, 2: 0.732}).
+
+  0%|          | 0/3 [00:00<?, ?it/s][A
+ 33%|███▎      | 1/3 [00:18<00:36, 18.49s/it][A
+ 67%|██████▋   | 2/3 [00:46<00:24, 24.06s/it][A
+100%|██████████| 3/3 [01:03<00:00, 20.98s/it][A100%|██████████| 3/3 [01:03<00:00, 21.26s/it]
+Completion saved at /nas/home/jahin/causal-lama/runs/llama2-7b/lama_val_optim_completions/lama_lama_som4x4_sigma0.33_groups3_g0:1-3-6_g1:13-14-0_g2:8-6-3_harmbench_val_completions.json
+[judge] HarmBench backend = hf
+
+Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s][A
+Loading checkpoint shards:  17%|█▋        | 1/6 [00:00<00:03,  1.53it/s][A
+Loading checkpoint shards:  33%|███▎      | 2/6 [00:01<00:02,  1.48it/s][A
+Loading checkpoint shards:  50%|█████     | 3/6 [00:01<00:01,  1.52it/s][A
+Loading checkpoint shards:  67%|██████▋   | 4/6 [00:02<00:01,  1.60it/s][A
+Loading checkpoint shards:  83%|████████▎ | 5/6 [00:03<00:00,  1.65it/s][A
+Loading checkpoint shards: 100%|██████████| 6/6 [00:03<00:00,  2.22it/s][ALoading checkpoint shards: 100%|██████████| 6/6 [00:03<00:00,  1.83it/s]
+                                                                               Best trial: 0. Best value: 0:   6%|▋         | 3/48 [07:35<1:22:02, 109.38s/it]Best trial: 0. Best value: 0:   6%|▋         | 3/48 [07:35<1:22:02, 109.38s/it]Best trial: 0. Best value: 0:   8%|▊         | 4/48 [07:35<1:14:22, 101.42s/it]Average HarmBench ASR: 0.0
+Evaluation results saved at ./runs/llama2-7b/lama_val_optim_evaluations/lama_lama_som4x4_sigma0.33_groups3_g0:1-3-6_g1:13-14-0_g2:8-6-3_results.json
+[I 2026-06-04 07:42:19,954] Trial 3 finished with value: 0.0 and parameters: {'g0_dir0': 1, 'g0_dir1': 3, 'g0_dir2': 6, 'g1_dir0': 13, 'g1_dir1': 13, 'g1_dir2': 0, 'g2_dir0': 8, 'g2_dir1': 6, 'g2_dir2': 3, 'alpha_0': 0.09319858895557255, 'alpha_1': 0.24433850024077416, 'alpha_2': 0.7091406276529139, 'alpha_3': 0.25958107946541537, 'alpha_4': 0.3836929758308604, 'alpha_5': 0.5210961183188781, 'alpha_6': 0.25601458064211274, 'alpha_7': 0.6873713388504321, 'alpha_8': 0.6914025143047475, 'alpha_9': 0.19787207911019652, 'alpha_10': 0.44670705503186803, 'alpha_11': 0.35907051882713736, 'alpha_12': 0.4669627914517106, 'alpha_13': 0.5035791653396036, 'alpha_14': 0.8216333166733749, 'alpha_15': 0.8010716092915446, 'alpha_16': 0.5821983596355467, 'alpha_17': 0.678171533296022, 'alpha_18': 0.956202534371424, 'alpha_19': 0.61663466780699, 'alpha_20': 0.5294015735742914, 'alpha_21': 0.7163335351123246, 'alpha_22': 0.9919235374527714, 'alpha_23': 0.5669891423415405, 'alpha_24': 0.8030841441987673, 'alpha_25': 0.8564789252018213, 'alpha_26': 0.5526555509971053, 'alpha_27': 0.8448595226492669, 'alpha_28': 0.6335295717485286, 'alpha_29': 0.7871569514348662, 'alpha_30': 0.7965691420880022, 'alpha_31': 0.7102081220598803}. Best is trial 0 with value: 0.0.
+Initializing model: llama2-7b on device: cuda:0
+Downloading and loading model meta-llama/Llama-2-7b-chat-hf...
+
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s][ALoading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 53.48it/s]
+Model loaded successfully.
+✓ Adaptive weights ablated (3 groups, 32 layers, group-α={0: 0.345, 1: 0.75, 2: 0.761}).
+
+  0%|          | 0/3 [00:00<?, ?it/s][A
+ 33%|███▎      | 1/3 [00:15<00:30, 15.41s/it][A
+ 67%|██████▋   | 2/3 [00:38<00:19, 19.85s/it][A
+100%|██████████| 3/3 [00:51<00:00, 16.85s/it][A100%|██████████| 3/3 [00:51<00:00, 17.21s/it]
+Completion saved at /nas/home/jahin/causal-lama/runs/llama2-7b/lama_val_optim_completions/lama_lama_som4x4_sigma0.33_groups3_g0:1-13-5_g1:2-0-9_g2:10-0-8_harmbench_val_completions.json
+[judge] HarmBench backend = hf
+
+Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s][A
+Loading checkpoint shards:  17%|█▋        | 1/6 [00:00<00:02,  1.69it/s][A
+Loading checkpoint shards:  33%|███▎      | 2/6 [00:01<00:02,  1.72it/s][A
+Loading checkpoint shards:  50%|█████     | 3/6 [00:01<00:01,  1.73it/s][A
+Loading checkpoint shards:  67%|██████▋   | 4/6 [00:02<00:01,  1.73it/s][A
+Loading checkpoint shards:  83%|████████▎ | 5/6 [00:02<00:00,  1.72it/s][A
+Loading checkpoint shards: 100%|██████████| 6/6 [00:03<00:00,  2.24it/s][ALoading checkpoint shards: 100%|██████████| 6/6 [00:03<00:00,  1.94it/s]
+                                                                               Best trial: 0. Best value: 0:   8%|▊         | 4/48 [08:51<1:14:22, 101.42s/it]Best trial: 0. Best value: 0:   8%|▊         | 4/48 [08:51<1:14:22, 101.42s/it]Best trial: 0. Best value: 0:  10%|█         | 5/48 [08:51<1:06:07, 92.26s/it] Average HarmBench ASR: 0.0
+Evaluation results saved at ./runs/llama2-7b/lama_val_optim_evaluations/lama_lama_som4x4_sigma0.33_groups3_g0:1-13-5_g1:2-0-9_g2:10-0-8_results.json
+[I 2026-06-04 07:43:35,972] Trial 4 finished with value: 0.0 and parameters: {'g0_dir0': 1, 'g0_dir1': 13, 'g0_dir2': 5, 'g1_dir0': 2, 'g1_dir1': 0, 'g1_dir2': 9, 'g2_dir0': 10, 'g2_dir1': 0, 'g2_dir2': 8, 'alpha_0': 0.1761066363237567, 'alpha_1': 0.4669237799634804, 'alpha_2': 0.13113696719115414, 'alpha_3': 0.553768924330784, 'alpha_4': 0.2860260568750904, 'alpha_5': 0.6943288724541778, 'alpha_6': 0.09682205908065715, 'alpha_7': 0.24124671418290083, 'alpha_8': 0.08151706416035528, 'alpha_9': 0.7267033934570923, 'alpha_10': 0.7507797330227445, 'alpha_11': 0.3247211731458461, 'alpha_12': 0.7465724030248917, 'alpha_13': 0.905790179372739, 'alpha_14': 0.7967978776373019, 'alpha_15': 0.8118602313424026, 'alpha_16': 0.6660534944074545, 'alpha_17': 0.595392091083, 'alpha_18': 0.9509267696577741, 'alpha_19': 0.9497970128963038, 'alpha_20': 0.7980811116320362, 'alpha_21': 0.6327566423212543, 'alpha_22': 0.6337107433749005, 'alpha_23': 0.8434395516339706, 'alpha_24': 0.9382042760223043, 'alpha_25': 0.9320184092700301, 'alpha_26': 0.8708338115624591, 'alpha_27': 0.7956632747833363, 'alpha_28': 0.46911315306994605, 'alpha_29': 0.5147013056811938, 'alpha_30': 0.943686544133322, 'alpha_31': 0.7543139979848204}. Best is trial 0 with value: 0.0.
+Initializing model: llama2-7b on device: cuda:0
+Downloading and loading model meta-llama/Llama-2-7b-chat-hf...
+
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s][ALoading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 54.47it/s]
+Model loaded successfully.
+✓ Adaptive weights ablated (3 groups, 32 layers, group-α={0: 0.39, 1: 0.727, 2: 0.722}).
+
+  0%|          | 0/3 [00:00<?, ?it/s][Arun_bo.sh: line 10: 3622320 Killed                  /usr/bin/python3 lama_optuna_search.py --model_name "$M" --directions_dir "./runs/$M/generate_directions" --directions_prefix lama_som4x4_sigma0.33_groups3 --trials "$TRIALS" --dirs_per_group 3 --optimize_alpha --seed 42
+[llama2-7b] BO DONE

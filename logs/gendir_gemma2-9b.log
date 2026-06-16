@@ -1,0 +1,45 @@
+Loaded representations: HL_x=(6000, 42, 3584), HF_x=(260, 42, 3584)
+Computing RCS...
+
+Layer grouping (3 groups):
+  Group 0: layers 0-13, rep=layer 13
+  Group 1: layers 14-27, rep=layer 27
+  Group 2: layers 28-41, rep=layer 38
+
+==================================================
+Group 0: layers 0-13, representative layer = 13
+==================================================
+  Training 4x4 SOM (10000 iterations, σ=0.33, lr=0.01)...
+Training SOM...
+SOM training complete.
+  → Generated 16 directions (shape: torch.Size([16, 3584]))
+  → Direction norms: min=60.2936, max=107.6038, mean=85.7683
+
+==================================================
+Group 1: layers 14-27, representative layer = 27
+==================================================
+  Training 4x4 SOM (10000 iterations, σ=0.33, lr=0.01)...
+Training SOM...
+SOM training complete.
+  → Generated 16 directions (shape: torch.Size([16, 3584]))
+  → Direction norms: min=209.7484, max=313.5382, mean=283.5196
+
+==================================================
+Group 2: layers 28-41, representative layer = 38
+==================================================
+  Training 4x4 SOM (10000 iterations, σ=0.33, lr=0.01)...
+Training SOM...
+SOM training complete.
+  → Generated 16 directions (shape: torch.Size([16, 3584]))
+  → Direction norms: min=401.1993, max=601.1642, mean=548.2192
+[✓] Group 0: saved 16 directions to /nas/home/jahin/causal-lama/runs/gemma2-9b/generate_directions/lama_som4x4_sigma0.33_groups3_group0_directions.pt
+[✓] Group 1: saved 16 directions to /nas/home/jahin/causal-lama/runs/gemma2-9b/generate_directions/lama_som4x4_sigma0.33_groups3_group1_directions.pt
+[✓] Group 2: saved 16 directions to /nas/home/jahin/causal-lama/runs/gemma2-9b/generate_directions/lama_som4x4_sigma0.33_groups3_group2_directions.pt
+[✓] Metadata saved to /nas/home/jahin/causal-lama/runs/gemma2-9b/generate_directions/lama_som4x4_sigma0.33_groups3_metadata.json
+
+==================================================
+LAMA direction generation complete for gemma2-9b
+  Groups: 3
+  Total directions: 48
+  Saved to: /nas/home/jahin/causal-lama/runs/gemma2-9b/generate_directions
+==================================================

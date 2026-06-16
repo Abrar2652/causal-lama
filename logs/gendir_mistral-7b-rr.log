@@ -1,0 +1,45 @@
+Loaded representations: HL_x=(6000, 32, 4096), HF_x=(260, 32, 4096)
+Computing RCS...
+
+Layer grouping (3 groups):
+  Group 0: layers 0-9, rep=layer 9
+  Group 1: layers 10-19, rep=layer 10
+  Group 2: layers 20-31, rep=layer 20
+
+==================================================
+Group 0: layers 0-9, representative layer = 9
+==================================================
+  Training 4x4 SOM (10000 iterations, σ=0.33, lr=0.01)...
+Training SOM...
+SOM training complete.
+  → Generated 16 directions (shape: torch.Size([16, 4096]))
+  → Direction norms: min=2.8196, max=19.8215, mean=17.0583
+
+==================================================
+Group 1: layers 10-19, representative layer = 10
+==================================================
+  Training 4x4 SOM (10000 iterations, σ=0.33, lr=0.01)...
+Training SOM...
+SOM training complete.
+  → Generated 16 directions (shape: torch.Size([16, 4096]))
+  → Direction norms: min=2.7663, max=20.2704, mean=17.3218
+
+==================================================
+Group 2: layers 20-31, representative layer = 20
+==================================================
+  Training 4x4 SOM (10000 iterations, σ=0.33, lr=0.01)...
+Training SOM...
+SOM training complete.
+  → Generated 16 directions (shape: torch.Size([16, 4096]))
+  → Direction norms: min=24.8355, max=40.5844, mean=32.9121
+[✓] Group 0: saved 16 directions to /nas/home/jahin/causal-lama/runs/mistral-7b-rr/generate_directions/lama_som4x4_sigma0.33_groups3_group0_directions.pt
+[✓] Group 1: saved 16 directions to /nas/home/jahin/causal-lama/runs/mistral-7b-rr/generate_directions/lama_som4x4_sigma0.33_groups3_group1_directions.pt
+[✓] Group 2: saved 16 directions to /nas/home/jahin/causal-lama/runs/mistral-7b-rr/generate_directions/lama_som4x4_sigma0.33_groups3_group2_directions.pt
+[✓] Metadata saved to /nas/home/jahin/causal-lama/runs/mistral-7b-rr/generate_directions/lama_som4x4_sigma0.33_groups3_metadata.json
+
+==================================================
+LAMA direction generation complete for mistral-7b-rr
+  Groups: 3
+  Total directions: 48
+  Saved to: /nas/home/jahin/causal-lama/runs/mistral-7b-rr/generate_directions
+==================================================

@@ -1,0 +1,140 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loaded representations: HL_x=(6000, 28, 3584), HF_x=(260, 28, 3584)
+
+============================================================
+STEP 1: Computing Refusal Contribution Score (RCS)
+============================================================
+
+Layer    RCS          CentDist     IntraStd    
+--------------------------------------------
+0        0.6664       0.7605       1.1412      
+1        0.6918       1.1697       1.6907      
+2        0.6643       1.5197       2.2877      
+3        0.6212       1.7346       2.7924      
+4        0.6604       2.6081       3.9490      
+5        0.8310       4.6822       5.6345      
+6        0.8134       4.9295       6.0605      
+7        0.8324       5.9189       7.1108      
+8        0.8285       8.6700       10.4642     
+9        0.9757       11.3498      11.6328     
+10       1.0194       12.4026      12.1662     
+11       1.0648       14.2796      13.4101     
+12       1.0668       13.8701      13.0021     
+13       1.2017       19.2436      16.0130     
+14       1.3013       23.8921      18.3596     
+15       1.4133       27.5587      19.5000     
+16       1.4803       30.5547      20.6405     
+17       1.5675       34.3640      21.9222     
+18       1.7940       45.0330      25.1023     
+19       1.8955       59.6427      31.4661     
+20       1.8932       79.5017      41.9942     
+21       1.6975       95.2894      56.1346     
+22       1.5636       119.5966     76.4900     
+23       1.5454       144.6481     93.5977     
+24       1.4217       166.9393     117.4234    
+25       1.3996       203.0333     145.0695    
+26       1.3074       233.6506     178.7160    
+27       1.3163       156.3054     118.7459    
+
+Top-5 RCS layers: [19, 20, 18, 21, 17]
+  Values: [1.8955, 1.8932, 1.794, 1.6975, 1.5675]
+
+============================================================
+STEP 2: Layer Grouping (3 groups, method='quantile')
+============================================================
+  Group 0: layers 0-8 (9 layers), rep=layer 7, mean RCS=0.7344
+  Group 1: layers 9-17 (9 layers), rep=layer 17, mean RCS=1.2323
+  Group 2: layers 18-27 (10 layers), rep=layer 19, mean RCS=1.5834
+
+============================================================
+STEP 3: Computing RCS-based Initial Ablation Weights (α_l)
+============================================================
+  α range: [0.3277, 1.0000]
+  Mean α: 0.6319
+
+============================================================
+STEP 4: Generating Visualizations
+============================================================
+[✓] RCS profile saved to logs/rcs_profile_qwen2-7b.pdf
+
+============================================================
+STEP 5: Causal Validation (Single-Layer Ablation Sweep)
+============================================================
+
+[RCS Causal] Computing no-ablation baseline ASR...
+Initializing model: qwen2-7b on device: cuda:0
+Downloading and loading model Qwen/Qwen2.5-7B-Instruct...
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:02,  1.18it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.38it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.56it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:02<00:00,  1.74it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:02<00:00,  1.60it/s]
+Model loaded successfully.
+Model already loaded.
+  0%|          | 0/10 [00:00<?, ?it/s]A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.
+ 10%|█         | 1/10 [00:31<04:42, 31.43s/it]A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.
+ 20%|██        | 2/10 [00:53<03:27, 25.92s/it]A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.
+ 30%|███       | 3/10 [01:15<02:49, 24.21s/it]A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.
+ 40%|████      | 4/10 [01:37<02:19, 23.33s/it]A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.
+ 50%|█████     | 5/10 [01:59<01:54, 22.88s/it]A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.
+ 60%|██████    | 6/10 [02:21<01:30, 22.59s/it]A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.
+ 70%|███████   | 7/10 [02:43<01:07, 22.46s/it]A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.
+ 80%|████████  | 8/10 [03:06<00:44, 22.36s/it]A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.
+ 90%|█████████ | 9/10 [03:28<00:22, 22.37s/it]A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.
+100%|██████████| 10/10 [03:49<00:00, 22.04s/it]100%|██████████| 10/10 [03:49<00:00, 22.98s/it]
+Completion saved at /nas/home/jahin/causal-lama/runs/qwen2-7b/causal_validation/rcs_causal_noablation_harmbench_test_completions(3).json
+[judge] HarmBench backend = hf
+Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:  17%|█▋        | 1/6 [00:00<00:03,  1.48it/s]Loading checkpoint shards:  33%|███▎      | 2/6 [00:01<00:02,  1.50it/s]Loading checkpoint shards:  50%|█████     | 3/6 [00:01<00:01,  1.50it/s]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:02<00:01,  1.45it/s]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:03<00:00,  1.42it/s]Loading checkpoint shards: 100%|██████████| 6/6 [00:03<00:00,  1.91it/s]Loading checkpoint shards: 100%|██████████| 6/6 [00:03<00:00,  1.65it/s]
+Average HarmBench ASR: 0.20125786163522014
+Evaluation results saved at /nas/home/jahin/causal-lama/runs/qwen2-7b/causal_validation/causal_noablation_results.json
+  → baseline ASR (no ablation) = 0.2013
+
+[RCS Causal] Layer 0/27 (RCS=0.6664)...
+Initializing model: qwen2-7b on device: cuda:0
+Downloading and loading model Qwen/Qwen2.5-7B-Instruct...
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:01,  1.81it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.86it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:01<00:00,  1.87it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:02<00:00,  1.96it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:02<00:00,  1.92it/s]
+Model loaded successfully.
+Model already loaded.
+  0%|          | 0/10 [00:00<?, ?it/s]A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.
+ 10%|█         | 1/10 [00:22<03:20, 22.25s/it]A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.
+ 20%|██        | 2/10 [00:44<02:57, 22.17s/it]A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.
+ 30%|███       | 3/10 [01:06<02:35, 22.23s/it]A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.
+ 40%|████      | 4/10 [01:28<02:13, 22.19s/it]A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.
+ 50%|█████     | 5/10 [01:50<01:50, 22.19s/it]A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.
+ 60%|██████    | 6/10 [02:13<01:28, 22.18s/it]A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.
+ 70%|███████   | 7/10 [02:35<01:06, 22.28s/it]A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.
+ 80%|████████  | 8/10 [02:57<00:44, 22.24s/it]A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.
+ 90%|█████████ | 9/10 [03:20<00:22, 22.26s/it]A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.
+100%|██████████| 10/10 [03:41<00:00, 21.98s/it]100%|██████████| 10/10 [03:41<00:00, 22.14s/it]
+Completion saved at /nas/home/jahin/causal-lama/runs/qwen2-7b/causal_validation/rcs_causal_layer0_harmbench_test_completions(1).json
+[judge] HarmBench backend = hf
+Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:  17%|█▋        | 1/6 [00:00<00:03,  1.41it/s]Loading checkpoint shards:  33%|███▎      | 2/6 [00:07<00:17,  4.38s/it]Loading checkpoint shards:  50%|█████     | 3/6 [00:08<00:08,  2.75s/it]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:09<00:03,  1.99s/it]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:10<00:01,  1.55s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:10<00:00,  1.09s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:10<00:00,  1.71s/it]
+  → ERROR: CUDA out of memory. Tried to allocate 580.00 MiB. GPU 0 has a total capacity of 47.45 GiB of which 366.38 MiB is free. Including non-PyTorch memory, this process has 47.09 GiB memory in use. Of the allocated memory 46.80 GiB is allocated by PyTorch, and 105.43 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+[RCS Causal] Layer 1/27 (RCS=0.6918)...
+Initializing model: qwen2-7b on device: cuda:0
+Downloading and loading model Qwen/Qwen2.5-7B-Instruct...
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:01,  1.79it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.84it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:01<00:00,  1.85it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:02<00:00,  1.93it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:02<00:00,  1.89it/s]
+Model loaded successfully.
+Model already loaded.
+  0%|          | 0/10 [00:00<?, ?it/s]A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.
+ 10%|█         | 1/10 [00:21<03:17, 21.95s/it]A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.
+ 20%|██        | 2/10 [00:44<02:56, 22.01s/it]A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.
+ 30%|███       | 3/10 [01:05<02:33, 21.98s/it]A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.
+ 40%|████      | 4/10 [01:27<02:11, 21.99s/it]A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.
+ 50%|█████     | 5/10 [01:50<01:50, 22.03s/it]A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.
+ 60%|██████    | 6/10 [02:12<01:28, 22.07s/it]A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.
+ 70%|███████   | 7/10 [02:34<01:06, 22.12s/it]A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.
+ 80%|████████  | 8/10 [02:56<00:44, 22.13s/it]A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.
+ 90%|█████████ | 9/10 [03:18<00:22, 22.15s/it]A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.
+100%|██████████| 10/10 [03:40<00:00, 21.88s/it]100%|██████████| 10/10 [03:40<00:00, 22.00s/it]
+Completion saved at /nas/home/jahin/causal-lama/runs/qwen2-7b/causal_validation/rcs_causal_layer1_harmbench_test_completions(1).json
+[judge] HarmBench backend = hf
+Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:  17%|█▋        | 1/6 [00:00<00:03,  1.54it/s]Loading checkpoint shards:  33%|███▎      | 2/6 [00:01<00:02,  1.52it/s]Loading checkpoint shards:  50%|█████     | 3/6 [00:01<00:02,  1.50it/s]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:02<00:01,  1.42it/s]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:03<00:00,  1.41it/s]Loading checkpoint shards: 100%|██████████| 6/6 [00:03<00:00,  1.87it/s]Loading checkpoint shards: 100%|██████████| 6/6 [00:03<00:00,  1.63it/s]
+  → ERROR: CUDA out of memory. Tried to allocate 580.00 MiB. GPU 0 has a total capacity of 47.45 GiB of which 366.38 MiB is free. Including non-PyTorch memory, this process has 47.09 GiB memory in use. Of the allocated memory 46.80 GiB is allocated by PyTorch, and 105.43 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+[RCS Causal] Layer 2/27 (RCS=0.6643)...
+Initializing model: qwen2-7b on device: cuda:0
+Downloading and loading model Qwen/Qwen2.5-7B-Instruct...
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:01,  1.85it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.83it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:01<00:00,  1.85it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:02<00:00,  1.92it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:02<00:00,  1.89it/s]
+Model loaded successfully.
+Model already loaded.
+  0%|          | 0/10 [00:00<?, ?it/s]A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.
+ 10%|█         | 1/10 [00:21<03:17, 21.96s/it]A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.
+ 20%|██        | 2/10 [00:44<02:56, 22.01s/it]A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.

@@ -1,0 +1,8 @@
+=== qwen2-7b downloaded; launching ablation study ===
+seed=42 PID=3658799 GPU=0
+seed=1 PID=3658800 GPU=1
+seed=2 PID=3658801 GPU=2
+=== ABLATION COMPLETE ===
+--- seed 42 ---
+--- seed 1 ---
+--- seed 2 ---

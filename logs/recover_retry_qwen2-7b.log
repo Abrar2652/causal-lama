@@ -1,0 +1,50 @@
+=== attempt 1 on GPU 2 ===
+/nas/home/jahin/.local/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (1.26.5) or chardet (7.2.0)/charset_normalizer (3.4.4) doesn't match a supported version!
+  warnings.warn(
+`torch_dtype` is deprecated! Use `dtype` instead!
+/nas/home/jahin/.local/lib/python3.10/site-packages/torchvision/io/image.py:13: UserWarning: Failed to load image Python extension: '/nas/home/jahin/.local/lib/python3.10/site-packages/torchvision/image.so: undefined symbol: _ZN3c1017RegisterOperatorsD1Ev'If you don't plan on using image functionality from `torchvision.io`, you can ignore this warning. Otherwise, there might be something wrong with your environment. Did you have `libjpeg` or `libpng` installed before building `torchvision` from source?
+  warn(
+Loaded representations: HL_x=(6000, 28, 3584), HF_x=(260, 28, 3584)
+Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:  17%|█▋        | 1/6 [00:00<00:02,  1.68it/s]Loading checkpoint shards:  33%|███▎      | 2/6 [00:01<00:02,  1.73it/s]Loading checkpoint shards:  50%|█████     | 3/6 [00:01<00:01,  1.77it/s]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:02<00:01,  1.82it/s]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:02<00:00,  1.83it/s]Loading checkpoint shards: 100%|██████████| 6/6 [00:02<00:00,  2.42it/s]Loading checkpoint shards: 100%|██████████| 6/6 [00:02<00:00,  2.05it/s]
+/nas/home/jahin/.local/lib/python3.10/site-packages/torch/cuda/__init__.py:654: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+baseline (no-ablation) ASR = 0.2439
+layers to judge this run: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27]
+  layer  0  RCS=0.666  ASR=0.2439  ΔASR=+0.0000
+  layer  1  RCS=0.692  ASR=0.1951  ΔASR=-0.0488
+  layer  2  RCS=0.664  ASR=0.1951  ΔASR=-0.0488
+  layer  3  RCS=0.621  ASR=0.1463  ΔASR=-0.0976
+  layer  4  RCS=0.660  ASR=0.1951  ΔASR=-0.0488
+  layer  5  RCS=0.831  ASR=0.2195  ΔASR=-0.0244
+  layer  6  RCS=0.813  ASR=0.1951  ΔASR=-0.0488
+  layer  7  RCS=0.832  ASR=0.1707  ΔASR=-0.0732
+  layer  8  RCS=0.829  ASR=0.0976  ΔASR=-0.1463
+  layer  9  RCS=0.976  ASR=0.2439  ΔASR=+0.0000
+  layer 10  RCS=1.019  ASR=0.2195  ΔASR=-0.0244
+  layer 11  RCS=1.065  ASR=0.1707  ΔASR=-0.0732
+  layer 12  RCS=1.067  ASR=0.1707  ΔASR=-0.0732
+  layer 13  RCS=1.202  ASR=0.4878  ΔASR=+0.2439
+  layer 14  RCS=1.301  ASR=0.2683  ΔASR=+0.0244
+  layer 15  RCS=1.413  ASR=0.3659  ΔASR=+0.1220
+  layer 16  RCS=1.480  ASR=0.2683  ΔASR=+0.0244
+  layer 17  RCS=1.568  ASR=0.2683  ΔASR=+0.0244
+  layer 18  RCS=1.794  ASR=0.3659  ΔASR=+0.1220
+  layer 19  RCS=1.895  ASR=0.3415  ΔASR=+0.0976
+  layer 20  RCS=1.893  ASR=0.2927  ΔASR=+0.0488
+  layer 21  RCS=1.698  ASR=0.2195  ΔASR=-0.0244
+  layer 22  RCS=1.564  ASR=0.2683  ΔASR=+0.0244
+  layer 23  RCS=1.545  ASR=0.2927  ΔASR=+0.0488
+  layer 24  RCS=1.422  ASR=0.1707  ΔASR=-0.0732
+  layer 25  RCS=1.400  ASR=0.2439  ΔASR=+0.0000
+  layer 26  RCS=1.307  ASR=0.2683  ΔASR=+0.0244
+  layer 27  RCS=1.316  ASR=0.1951  ΔASR=-0.0488
+
+================ CAUSAL VALIDATION (recovered) ================
+Spearman(RCS, ΔASR)        = 0.6413  (p=2.36e-04)  95%CI[0.381,0.805]
+Spearman(norm, ΔASR)       = 0.4335  (p=2.12e-02)
+partial(RCS,ΔASR | norm)   = 0.5646  (p=1.75e-03)   <-- NON-CIRCULARITY
+baseline ASR=0.244  ΔASR range [-0.146,+0.244]
+VERDICT: MODERATE; non-circularity survives
+saved -> logs/causal_recovered_qwen2-7b.json
+attempt 1 exit code: 0
+RECOVERY COMPLETE

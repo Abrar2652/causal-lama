@@ -1,0 +1,6 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+cuda:0
+Initializing model: llama3-8b-gen on device: cuda:0
+Downloading and loading model meta-llama/Meta-Llama-3-8B-Instruct (dtype=auto)...
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files:  25%|██▌       | 1/4 [00:43<02:09, 43.21s/it]Fetching 4 files: 100%|██████████| 4/4 [00:43<00:00, 10.80s/it]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]

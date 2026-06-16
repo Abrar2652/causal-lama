@@ -1,0 +1,26 @@
+Loaded representations: HL_x=(6000, 32, 4096), HF_x=(260, 32, 4096)
+[✓] Loaded group 0: 16 directions from /nas/home/jahin/causal-lama/runs/llama2-7b/generate_directions/lama_som4x4_sigma0.33_groups3_group0_directions.pt
+[✓] Loaded group 1: 16 directions from /nas/home/jahin/causal-lama/runs/llama2-7b/generate_directions/lama_som4x4_sigma0.33_groups3_group1_directions.pt
+[✓] Loaded group 2: 16 directions from /nas/home/jahin/causal-lama/runs/llama2-7b/generate_directions/lama_som4x4_sigma0.33_groups3_group2_directions.pt
+Loaded optimization results from ./runs/llama2-7b/lama_optimizations/lama_lama_som4x4_sigma0.33_groups3_results_t48.json
+  Best ASR: 0.0
+  Direction indices per group: {0: [5, 15, 11], 1: [9, 2, 2], 2: [0, 13, 9]}
+  α range: [0.015, 0.979]
+Loaded BO results from ./runs/llama2-7b/lama_optimizations/lama_lama_som4x4_sigma0.33_groups3_results_t48.json
+  best ASR(val)=0.0%  α range [0.015,0.979]
+
+══ MD BASELINE ══
+l* = 11  (lowest refusal-token probability)
+Training SOM at l*=11 (inline, CPU)...
+[✓] Saved 16 MD directions → ./runs/llama2-7b/generate_directions/som4x4_sigma0.33_layer11_directions.pt
+Traceback (most recent call last):
+  File "/nas/home/jahin/causal-lama/run_ablation_study.py", line 200, in <module>
+    md_all_dirs = torch.load(md_dir_file, weights_only=True)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/torch/serialization.py", line 1072, in load
+    with _open_zipfile_reader(opened_file) as opened_zipfile:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/torch/serialization.py", line 480, in __init__
+    super().__init__(torch._C.PyTorchFileReader(name_or_buffer))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: PytorchStreamReader failed reading zip archive: failed finding central directory

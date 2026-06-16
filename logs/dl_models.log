@@ -1,0 +1,10 @@
+Fetching 11 files:   0%|          | 0/11 [00:00<?, ?it/s]Fetching 14 files:   0%|          | 0/14 [00:00<?, ?it/s]Fetching 16 files:   0%|          | 0/16 [00:00<?, ?it/s]Fetching 12 files:   0%|          | 0/12 [00:00<?, ?it/s]Fetching 17 files:   0%|          | 0/17 [00:00<?, ?it/s]Fetching 14 files:   7%|▋         | 1/14 [00:00<00:04,  2.62it/s]Fetching 11 files:   9%|▉         | 1/11 [00:00<00:07,  1.31it/s]Fetching 16 files:   6%|▋         | 1/16 [00:00<00:11,  1.27it/s]Fetching 12 files:   8%|▊         | 1/12 [00:00<00:09,  1.17it/s]Fetching 17 files:   6%|▌         | 1/17 [00:00<00:14,  1.12it/s]Fetching 12 files:  33%|███▎      | 4/12 [00:00<00:01,  5.22it/s]Fetching 14 files: 100%|██████████| 14/14 [00:01<00:00, 11.73it/s]Fetching 14 files: 100%|██████████| 14/14 [00:01<00:00, 10.92it/s]
+DONE: google/gemma-2-9b-it
+Fetching 12 files:  33%|███▎      | 4/12 [00:20<00:01,  5.22it/s]Fetching 17 files:  41%|████      | 7/17 [02:01<03:00, 18.03s/it]Fetching 17 files:  47%|████▋     | 8/17 [02:02<02:15, 15.08s/it]Fetching 11 files:  64%|██████▎   | 7/11 [02:38<01:34, 23.61s/it]Fetching 11 files: 100%|██████████| 11/11 [02:38<00:00, 14.40s/it]
+DONE: deepseek-ai/DeepSeek-R1-Distill-Qwen-7B
+Fetching 12 files:  42%|████▏     | 5/12 [02:40<05:12, 44.64s/it]Fetching 12 files: 100%|██████████| 12/12 [02:40<00:00, 13.39s/it]
+DONE: GraySwanAI/Mistral-7B-Instruct-RR
+Fetching 17 files:  71%|███████   | 12/17 [03:45<01:42, 20.43s/it]Fetching 17 files: 100%|██████████| 17/17 [03:45<00:00, 13.26s/it]
+DONE: meta-llama/Llama-3.1-8B-Instruct
+Fetching 16 files:  25%|██▌       | 4/16 [03:47<12:18, 61.52s/it]Fetching 16 files: 100%|██████████| 16/16 [03:47<00:00, 14.24s/it]
+DONE: mistralai/Ministral-8B-Instruct-2410

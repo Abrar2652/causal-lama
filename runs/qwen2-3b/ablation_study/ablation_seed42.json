@@ -1,0 +1,66 @@
+{
+  "model": "qwen2-3b",
+  "seed": 42,
+  "dataset": "harmbench_test",
+  "bo_opt_file": "./runs/qwen2-3b/lama_optimizations/lama_lama_som4x4_sigma0.33_groups3_results_t48.json",
+  "md_layer": 23,
+  "asr_table": {
+    "MD": {
+      "asr": 0.8427672955974843,
+      "ci_lo": 0.7861635220125787,
+      "ci_hi": 0.89937106918239,
+      "n": 159,
+      "diff_vs_md": 0.0,
+      "p_vs_md": 1.0,
+      "mcnemar_p": 1.0,
+      "guard2_asr": 0.779874213836478
+    },
+    "LAMA-uniform": {
+      "asr": 0.8553459119496856,
+      "ci_lo": 0.7987421383647799,
+      "ci_hi": 0.9056603773584906,
+      "n": 159,
+      "diff_vs_md": 0.012578616352201255,
+      "p_vs_md": 0.7902,
+      "mcnemar_p": 0.8501067391385259,
+      "guard2_asr": 0.8113207547169812
+    },
+    "LAMA-RCS": {
+      "asr": 0.8553459119496856,
+      "ci_lo": 0.7987421383647799,
+      "ci_hi": 0.9056603773584906,
+      "n": 159,
+      "diff_vs_md": 0.012578616352201255,
+      "p_vs_md": 0.7762,
+      "mcnemar_p": 0.8445192674729399,
+      "guard2_asr": 0.7987421383647799
+    },
+    "LAMA-BO": {
+      "asr": 0.8805031446540881,
+      "ci_lo": 0.8301886792452831,
+      "ci_hi": 0.9308176100628931,
+      "n": 159,
+      "diff_vs_md": 0.037735849056603765,
+      "p_vs_md": 0.2444,
+      "mcnemar_p": 0.30745625495910645,
+      "guard2_asr": 0.8050314465408805
+    }
+  },
+  "utility_clean": {
+    "perplexity": 71.86520950755171,
+    "mean_nll": 4.274792274292228,
+    "compliance_rate": 0.975,
+    "over_refusal_rate": 0.015,
+    "empty_rate": 0.01
+  },
+  "utility_lama_bo": {
+    "perplexity": 91.0681303517864,
+    "mean_nll": 4.511607911576371,
+    "compliance_rate": 1.0,
+    "over_refusal_rate": 0.0,
+    "empty_rate": 0.0,
+    "nll_delta_vs_baseline": 0.24226168274879445,
+    "paired_t": 49.86090799471861,
+    "paired_p": 2.1021689282216758e-114
+  }
+}

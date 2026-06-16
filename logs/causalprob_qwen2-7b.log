@@ -1,0 +1,45 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loaded representations: HL_x=(6000, 28, 3584), HF_x=(260, 28, 3584)
+Initializing model: qwen2-7b on device: cuda:0
+Downloading and loading model Qwen/Qwen2.5-7B-Instruct...
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:01,  1.52it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.43it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.51it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:02<00:00,  1.63it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:02<00:00,  1.58it/s]
+Model loaded successfully.
+Model already loaded.
+refusal_token_id=[40, 2121]  prompts=159
+baseline P_refuse (no ablation) = 0.8649
+  layer  0  RCS=0.666  P_refuse=0.8649  ΔP=-0.0000
+  layer  1  RCS=0.692  P_refuse=0.8639  ΔP=+0.0010
+  layer  2  RCS=0.664  P_refuse=0.8639  ΔP=+0.0010
+  layer  3  RCS=0.621  P_refuse=0.8714  ΔP=-0.0065
+  layer  4  RCS=0.660  P_refuse=0.8571  ΔP=+0.0078
+  layer  5  RCS=0.831  P_refuse=0.8605  ΔP=+0.0044
+  layer  6  RCS=0.813  P_refuse=0.8599  ΔP=+0.0050
+  layer  7  RCS=0.832  P_refuse=0.8555  ΔP=+0.0094
+  layer  8  RCS=0.829  P_refuse=0.8560  ΔP=+0.0089
+  layer  9  RCS=0.976  P_refuse=0.8612  ΔP=+0.0037
+  layer 10  RCS=1.019  P_refuse=0.8417  ΔP=+0.0232
+  layer 11  RCS=1.065  P_refuse=0.8263  ΔP=+0.0386
+  layer 12  RCS=1.067  P_refuse=0.8517  ΔP=+0.0132
+  layer 13  RCS=1.202  P_refuse=0.7109  ΔP=+0.1540
+  layer 14  RCS=1.301  P_refuse=0.8132  ΔP=+0.0517
+  layer 15  RCS=1.413  P_refuse=0.7839  ΔP=+0.0810
+  layer 16  RCS=1.480  P_refuse=0.8274  ΔP=+0.0375
+  layer 17  RCS=1.568  P_refuse=0.8135  ΔP=+0.0514
+  layer 18  RCS=1.794  P_refuse=0.6714  ΔP=+0.1935
+  layer 19  RCS=1.895  P_refuse=0.6893  ΔP=+0.1756
+  layer 20  RCS=1.893  P_refuse=0.6495  ΔP=+0.2154
+  layer 21  RCS=1.698  P_refuse=0.7788  ΔP=+0.0861
+  layer 22  RCS=1.564  P_refuse=0.8072  ΔP=+0.0577
+  layer 23  RCS=1.545  P_refuse=0.8214  ΔP=+0.0435
+  layer 24  RCS=1.422  P_refuse=0.8515  ΔP=+0.0134
+  layer 25  RCS=1.400  P_refuse=0.8226  ΔP=+0.0423
+  layer 26  RCS=1.307  P_refuse=0.8402  ΔP=+0.0247
+  layer 27  RCS=1.316  P_refuse=0.7195  ΔP=+0.1454
+
+================ CAUSAL (refusal-prob) ================
+Spearman(RCS, ΔP_refuse)      = 0.8730  (p=1.37e-09)  95%CI[0.675,0.951]
+Spearman(norm, ΔP_refuse)     = 0.7438
+partial(RCS,ΔP | norm)        = 0.6847  (p=5.84e-05)  <-- NON-CIRCULARITY
+baseline P_refuse=0.865  ΔP range [-0.006,+0.215]
+VERDICT: PASS ρ≥0.7; non-circularity survives
+saved -> logs/causal_refusalprob_qwen2-7b.json

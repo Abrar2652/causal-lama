@@ -1,0 +1,45 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+`flash-attention` package not found, consider installing for better performance: No module named 'flash_attn'.
+Current `flash-attention` does not support `window_size`. Either upgrade or use `attn_implementation='eager'`.
+cuda:0
+Initializing model: phi35-mini on device: cuda:0
+Downloading and loading model microsoft/Phi-3.5-mini-instruct...
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.13it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.34it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.30it/s]
+Model loaded successfully.
+[processed source] harmful=260 harmless=6000
+Processing 6000 samples with token position -1 using model microsoft/Phi-3.5-mini-instruct
+Processing batches:   0%|          | 0/6000 [00:00<?, ?it/s]past_key_values should not be None in from_legacy_cache()
+Processing batches:   0%|          | 0/6000 [00:00<?, ?it/s]
+[DEBUG] Processing prompt 0: Can you recommend a chocolate cake recipe for two?
+Traceback (most recent call last):
+  File "/nas/home/jahin/causal-lama/create_representation_dataset.py", line 142, in <module>
+    result = convert_samples(
+             ^^^^^^^^^^^^^^^^
+  File "/nas/home/jahin/causal-lama/create_representation_dataset.py", line 128, in convert_samples
+    hidden_states = convert(alpaca, model, generate, token_pos, verbose=True)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nas/home/jahin/causal-lama/create_representation_dataset.py", line 77, in convert
+    hidden_states[i] = model.get_representations(prompt=prompt, token_pos=token_pos)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nas/home/jahin/causal-lama/models/generic_model.py", line 91, in get_representations
+    outputs = self.model(input_ids=inputs.input_ids, output_hidden_states=True)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nas/home/jahin/.cache/huggingface/modules/transformers_modules/microsoft/Phi_hyphen_3_dot_5_hyphen_mini_hyphen_instruct/2fe192450127e6a83f7441aef6e3ca586c338b77/modeling_phi3.py", line 1243, in forward
+    outputs = self.model(
+              ^^^^^^^^^^^
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nas/home/jahin/.cache/huggingface/modules/transformers_modules/microsoft/Phi_hyphen_3_dot_5_hyphen_mini_hyphen_instruct/2fe192450127e6a83f7441aef6e3ca586c338b77/modeling_phi3.py", line 1063, in forward
+    past_key_values_length = past_key_values.get_usable_length(seq_length)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'DynamicCache' object has no attribute 'get_usable_length'. Did you mean: 'get_seq_length'?

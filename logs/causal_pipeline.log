@@ -1,0 +1,14 @@
+=== GENERATION DONE; starting judge phase ===
+=== JUDGE DONE ===
+----- qwen2-7b -----
+Spearman(RCS, ΔASR)        = 0.6570  (p=1.46e-04)  95%CI[0.366,0.839]
+Spearman(norm, ΔASR)       = 0.4238  (p=2.46e-02)
+partial(RCS,ΔASR | norm)   = 0.6098  (p=5.72e-04)   <-- NON-CIRCULARITY
+baseline ASR=0.201  ΔASR range [-0.006,+0.208]
+VERDICT: MODERATE; non-circularity survives
+----- llama2-7b -----
+Spearman(RCS, ΔASR)        = nan  (p=nan)  95%CI[nan,nan]
+Spearman(norm, ΔASR)       = nan  (p=nan)
+partial(RCS,ΔASR | norm)   = 0.0000  (p=1.00e+00)   <-- NON-CIRCULARITY
+baseline ASR=0.000  ΔASR range [+0.000,+0.000]
+VERDICT: WEAK; non-circularity WEAK

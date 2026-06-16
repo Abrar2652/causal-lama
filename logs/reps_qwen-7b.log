@@ -1,0 +1,50 @@
+A new version of the following files was downloaded from https://huggingface.co/Qwen/Qwen-7B-Chat:
+- configuration_qwen.py
+. Make sure to double-check they do not contain any added malicious code. To avoid downloading new versions of the code file, you can pin a revision.
+`torch_dtype` is deprecated! Use `dtype` instead!
+Encountered exception while importing transformers_stream_generator: cannot import name 'BeamSearchScorer' from 'transformers' (/nas/home/jahin/.local/lib/python3.12/site-packages/transformers/__init__.py)
+cuda:0
+Initializing model: qwen-7b on device: cuda:0
+Downloading and loading model Qwen/Qwen-7B-Chat...
+Traceback (most recent call last):
+  File "/nas/home/jahin/causal-lama/create_representation_dataset.py", line 142, in <module>
+    result = convert_samples(
+             ^^^^^^^^^^^^^^^^
+  File "/nas/home/jahin/causal-lama/create_representation_dataset.py", line 115, in convert_samples
+    model = load_model(model_name, device=device)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nas/home/jahin/causal-lama/models/load_models.py", line 41, in load_model
+    return models[model_name](device=device)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nas/home/jahin/causal-lama/models/language_models.py", line 441, in __init__
+    super().__init__(model_name, system_prompt, device, quantization_config)
+  File "/nas/home/jahin/causal-lama/models/language_models.py", line 20, in __init__
+    self.load_model()
+  File "/nas/home/jahin/causal-lama/models/language_models.py", line 70, in load_model
+    self.model = AutoModelForCausalLM.from_pretrained(self.model_name, token=token, torch_dtype=torch.float16, trust_remote_code=True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/transformers/models/auto/auto_factory.py", line 586, in from_pretrained
+    model_class = get_class_from_dynamic_module(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/transformers/dynamic_module_utils.py", line 604, in get_class_from_dynamic_module
+    final_module = get_cached_module_file(
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/transformers/dynamic_module_utils.py", line 427, in get_cached_module_file
+    modules_needed = check_imports(resolved_module_file)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/transformers/dynamic_module_utils.py", line 248, in check_imports
+    importlib.import_module(imp)
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/transformers_stream_generator/__init__.py", line 1, in <module>
+    from .main import init_stream_support
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/transformers_stream_generator/main.py", line 1, in <module>
+    from transformers import (
+ImportError: cannot import name 'BeamSearchScorer' from 'transformers' (/nas/home/jahin/.local/lib/python3.12/site-packages/transformers/__init__.py)

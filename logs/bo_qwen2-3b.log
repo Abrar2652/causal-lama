@@ -1,0 +1,139 @@
+/nas/home/jahin/causal-lama/lama_optuna_search.py:296: ExperimentalWarning: Argument ``multivariate`` is an experimental feature. The interface can change in the future.
+  sampler = optuna.samplers.TPESampler(
+/nas/home/jahin/causal-lama/lama_optuna_search.py:296: ExperimentalWarning: Argument ``group`` is an experimental feature. The interface can change in the future.
+  sampler = optuna.samplers.TPESampler(
+[I 2026-06-04 07:34:37,434] A new study created in memory with name: lama_qwen2-3b
+Loaded representations: HL_x=(6000, 36, 2048), HF_x=(260, 36, 2048)
+[✓] Loaded group 0: 16 directions from /nas/home/jahin/causal-lama/runs/qwen2-3b/generate_directions/lama_som4x4_sigma0.33_groups3_group0_directions.pt
+[✓] Loaded group 1: 16 directions from /nas/home/jahin/causal-lama/runs/qwen2-3b/generate_directions/lama_som4x4_sigma0.33_groups3_group1_directions.pt
+[✓] Loaded group 2: 16 directions from /nas/home/jahin/causal-lama/runs/qwen2-3b/generate_directions/lama_som4x4_sigma0.33_groups3_group2_directions.pt
+
+============================================================
+LAMA Bayesian Optimization
+  Model: qwen2-3b
+  Groups: 3
+  Dirs per group: 3
+  Trials: 48
+  Optimize α: True
+  Seed: 42
+  Directions pre-loaded: 48 total
+============================================================
+
+  0%|          | 0/48 [00:00<?, ?it/s]`torch_dtype` is deprecated! Use `dtype` instead!
+Initializing model: qwen2-3b on device: cuda:0
+Downloading and loading model Qwen/Qwen2.5-3B-Instruct...
+
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s][A
+Loading checkpoint shards:  50%|█████     | 1/2 [00:07<00:07,  7.89s/it][A
+Loading checkpoint shards: 100%|██████████| 2/2 [00:15<00:00,  7.91s/it][ALoading checkpoint shards: 100%|██████████| 2/2 [00:15<00:00,  7.90s/it]
+Model loaded successfully.
+Model already loaded.
+✓ Adaptive weights ablated (3 groups, 36 layers, group-α={0: 0.406, 1: 0.441, 2: 0.767}).
+Created folder: /nas/home/jahin/causal-lama/runs/qwen2-3b/lama_val_optim_completions
+
+  0%|          | 0/3 [00:00<?, ?it/s][AA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.
+
+ 33%|███▎      | 1/3 [00:45<01:30, 45.20s/it][AA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.
+
+ 67%|██████▋   | 2/3 [01:28<00:44, 44.28s/it][AA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.
+
+100%|██████████| 3/3 [02:06<00:00, 41.23s/it][A100%|██████████| 3/3 [02:06<00:00, 42.15s/it]
+Completion saved at /nas/home/jahin/causal-lama/runs/qwen2-3b/lama_val_optim_completions/lama_lama_som4x4_sigma0.33_groups3_g0:5-15-11_g1:9-2-3_g2:0-13-9_harmbench_val_completions.json
+[judge] HarmBench backend = hf
+
+Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s][A
+Loading checkpoint shards:  17%|█▋        | 1/6 [00:00<00:03,  1.28it/s][A
+Loading checkpoint shards:  33%|███▎      | 2/6 [00:01<00:02,  1.35it/s][A
+Loading checkpoint shards:  50%|█████     | 3/6 [00:02<00:02,  1.39it/s][A
+Loading checkpoint shards:  67%|██████▋   | 4/6 [00:02<00:01,  1.38it/s][A
+Loading checkpoint shards:  83%|████████▎ | 5/6 [00:03<00:00,  1.35it/s][A
+Loading checkpoint shards: 100%|██████████| 6/6 [00:03<00:00,  1.81it/s][ALoading checkpoint shards: 100%|██████████| 6/6 [00:03<00:00,  1.55it/s]
+                                        0%|          | 0/48 [02:43<?, ?it/s]                                        0%|          | 0/48 [02:43<?, ?it/s]  0%|          | 0/48 [02:43<?, ?it/s]
+[W 2026-06-04 07:37:21,175] Trial 0 failed with parameters: {'g0_dir0': 5, 'g0_dir1': 15, 'g0_dir2': 11, 'g1_dir0': 9, 'g1_dir1': 2, 'g1_dir2': 2, 'g2_dir0': 0, 'g2_dir1': 13, 'g2_dir2': 9, 'alpha_0': 0.5213225280174822, 'alpha_1': 0.015217615770481606, 'alpha_2': 0.700288802964849, 'alpha_3': 0.6237871167035073, 'alpha_4': 0.16723656704816472, 'alpha_5': 0.14138099899648174, 'alpha_6': 0.14863567778571915, 'alpha_7': 0.37494199816450724, 'alpha_8': 0.6369302330796445, 'alpha_9': 0.5660662185720111, 'alpha_10': 0.38623255975188125, 'alpha_11': 0.5940488913133949, 'alpha_12': 0.1679890508898187, 'alpha_13': 0.28682920394469225, 'alpha_14': 0.3346371729984213, 'alpha_15': 0.40384386462989114, 'alpha_16': 0.656932859847366, 'alpha_17': 0.19410583253625424, 'alpha_18': 0.5268713041100179, 'alpha_19': 0.5992274331890511, 'alpha_20': 0.32062205056144055, 'alpha_21': 0.7490180247556668, 'alpha_22': 0.5179048424019187, 'alpha_23': 0.5295362470339519, 'alpha_24': 0.9765096732367868, 'alpha_25': 0.9848147345931967, 'alpha_26': 0.9199646665966068, 'alpha_27': 0.7189243753337656, 'alpha_28': 0.6163850297284004, 'alpha_29': 0.8637152247649929, 'alpha_30': 0.7760609974958406, 'alpha_31': 0.629174757892935, 'alpha_32': 0.7586217203021643, 'alpha_33': 0.4648024375502171, 'alpha_34': 0.946197124671428, 'alpha_35': 0.5489787585887713} because of the following error: OutOfMemoryError('CUDA out of memory. Tried to allocate 136.00 MiB. GPU 0 has a total capacity of 47.45 GiB of which 112.38 MiB is free. Process 3622319 has 16.49 GiB memory in use. Including non-PyTorch memory, this process has 12.21 GiB memory in use. Process 3622320 has 18.64 GiB memory in use. Of the allocated memory 12.00 GiB is allocated by PyTorch, and 16.00 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)').
+Traceback (most recent call last):
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/optuna/study/_optimize.py", line 206, in _run_trial
+    value_or_values = func(trial)
+                      ^^^^^^^^^^^
+  File "/nas/home/jahin/causal-lama/lama_optuna_search.py", line 189, in _lama_objective
+    return evaluate_lama_attack(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/nas/home/jahin/causal-lama/lama_optuna_search.py", line 126, in evaluate_lama_attack
+    result = evaluate_jailbreak(
+             ^^^^^^^^^^^^^^^^^^^
+  File "/nas/home/jahin/causal-lama/eval_jailbreaks.py", line 199, in evaluate_jailbreak
+    classifications, n_invalid = harmbench_judge_fn_hf(prompts, responses,
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nas/home/jahin/causal-lama/eval_jailbreaks.py", line 76, in harmbench_judge_fn_hf
+    model_id, torch_dtype=torch.float16).to(device).eval()
+                                         ^^^^^^^^^^
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/transformers/modeling_utils.py", line 4343, in to
+    return super().to(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1174, in to
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 780, in _apply
+    module._apply(fn)
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 780, in _apply
+    module._apply(fn)
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 780, in _apply
+    module._apply(fn)
+  [Previous line repeated 2 more times]
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 805, in _apply
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1160, in convert
+    return t.to(
+           ^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 136.00 MiB. GPU 0 has a total capacity of 47.45 GiB of which 112.38 MiB is free. Process 3622319 has 16.49 GiB memory in use. Including non-PyTorch memory, this process has 12.21 GiB memory in use. Process 3622320 has 18.64 GiB memory in use. Of the allocated memory 12.00 GiB is allocated by PyTorch, and 16.00 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+[W 2026-06-04 07:37:21,195] Trial 0 failed with value None.
+Traceback (most recent call last):
+  File "/nas/home/jahin/causal-lama/lama_optuna_search.py", line 405, in <module>
+    run_lama_optimization(args)
+  File "/nas/home/jahin/causal-lama/lama_optuna_search.py", line 307, in run_lama_optimization
+    study.optimize(objective, n_trials=args.trials, n_jobs=1, show_progress_bar=True)
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/optuna/study/study.py", line 516, in optimize
+    _optimize(
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/optuna/study/_optimize.py", line 68, in _optimize
+    _optimize_sequential(
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/optuna/study/_optimize.py", line 165, in _optimize_sequential
+    frozen_trial_id = _run_trial(study, func, catch)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/optuna/study/_optimize.py", line 263, in _run_trial
+    raise func_err
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/optuna/study/_optimize.py", line 206, in _run_trial
+    value_or_values = func(trial)
+                      ^^^^^^^^^^^
+  File "/nas/home/jahin/causal-lama/lama_optuna_search.py", line 189, in _lama_objective
+    return evaluate_lama_attack(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/nas/home/jahin/causal-lama/lama_optuna_search.py", line 126, in evaluate_lama_attack
+    result = evaluate_jailbreak(
+             ^^^^^^^^^^^^^^^^^^^
+  File "/nas/home/jahin/causal-lama/eval_jailbreaks.py", line 199, in evaluate_jailbreak
+    classifications, n_invalid = harmbench_judge_fn_hf(prompts, responses,
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nas/home/jahin/causal-lama/eval_jailbreaks.py", line 76, in harmbench_judge_fn_hf
+    model_id, torch_dtype=torch.float16).to(device).eval()
+                                         ^^^^^^^^^^
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/transformers/modeling_utils.py", line 4343, in to
+    return super().to(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1174, in to
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 780, in _apply
+    module._apply(fn)
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 780, in _apply
+    module._apply(fn)
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 780, in _apply
+    module._apply(fn)
+  [Previous line repeated 2 more times]
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 805, in _apply
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1160, in convert
+    return t.to(
+           ^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 136.00 MiB. GPU 0 has a total capacity of 47.45 GiB of which 112.38 MiB is free. Process 3622319 has 16.49 GiB memory in use. Including non-PyTorch memory, this process has 12.21 GiB memory in use. Process 3622320 has 18.64 GiB memory in use. Of the allocated memory 12.00 GiB is allocated by PyTorch, and 16.00 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+[qwen2-3b] BO DONE

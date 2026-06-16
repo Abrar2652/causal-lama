@@ -1,0 +1,97 @@
+Loaded representations: HL_x=(6000, 34, 2560), HF_x=(260, 34, 2560)
+
+============================================================
+STEP 1: Computing Refusal Contribution Score (RCS)
+============================================================
+
+Layer    RCS          CentDist     IntraStd    
+--------------------------------------------
+0        0.7805       7.0798       9.0705      
+1        0.7860       11.9301      15.1786     
+2        1.3439       31.0713      23.1208     
+3        1.5158       42.2000      27.8407     
+4        1.4042       79.0892      56.3219     
+5        0.5558       34.5034      62.0770     
+6        nan          nan          nan         
+7        nan          nan          nan         
+8        nan          nan          nan         
+9        nan          nan          nan         
+10       nan          nan          nan         
+11       nan          nan          nan         
+12       nan          nan          nan         
+13       nan          nan          nan         
+14       nan          nan          nan         
+15       nan          nan          nan         
+16       nan          nan          nan         
+17       nan          nan          nan         
+18       nan          nan          nan         
+19       nan          nan          nan         
+20       nan          nan          nan         
+21       nan          nan          nan         
+22       nan          nan          nan         
+23       nan          nan          nan         
+24       nan          nan          nan         
+25       nan          nan          nan         
+26       nan          nan          nan         
+27       nan          nan          nan         
+28       nan          nan          nan         
+29       nan          nan          nan         
+30       nan          nan          nan         
+31       nan          nan          nan         
+32       nan          nan          nan         
+33       nan          nan          nan         
+
+Top-5 RCS layers: [3, 4, 2, 1, 0]
+  Values: [1.5158, 1.4042, 1.3439, 0.786, 0.7805]
+
+============================================================
+STEP 2: Layer Grouping (3 groups, method='quantile')
+============================================================
+  Group 0: layers 0-10 (11 layers), rep=layer 3, mean RCS=nan
+  Group 1: layers 11-21 (11 layers), rep=layer 11, mean RCS=nan
+  Group 2: layers 22-33 (12 layers), rep=layer 22, mean RCS=nan
+
+============================================================
+STEP 3: Computing RCS-based Initial Ablation Weights (α_l)
+============================================================
+  α range: [0.3667, 1.0000]
+  Mean α: nan
+
+============================================================
+STEP 4: Generating Visualizations
+============================================================
+Traceback (most recent call last):
+  File "/nas/home/jahin/causal-lama/lama_rcs.py", line 1125, in <module>
+    main()
+  File "/nas/home/jahin/causal-lama/lama_rcs.py", line 1034, in main
+    plot_rcs_profile(rcs_scores, args.model_name, groups=groups, save_path=args.save_path)
+  File "/nas/home/jahin/causal-lama/lama_rcs.py", line 824, in plot_rcs_profile
+    smoothed = savgol_filter(rcs_values, window, polyorder=2)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/scipy/signal/_savitzky_golay.py", line 378, in savgol_filter
+    y = _fit_edges_polyfit(x, window_length, polyorder, deriv, delta, axis, y)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/scipy/signal/_savitzky_golay.py", line 247, in _fit_edges_polyfit
+    y = _fit_edge(x, n - window_length, n, n - halflen, n, axis,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/scipy/signal/_savitzky_golay.py", line 204, in _fit_edge
+    poly_coeffs = _pu.polyfit(
+                  ^^^^^^^^^^^^
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/scipy/signal/_polyutils.py", line 217, in polyfit
+    c, _, rank, _ = _lstsq(lhs, y, rcond=rcond, xp=xp)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/scipy/signal/_polyutils.py", line 91, in _lstsq
+    return s_lstsq(a, b, cond=rcond)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/scipy/_lib/_util.py", line 1181, in wrapper
+    return f(*arrays, *other_args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/scipy/linalg/_basic.py", line 1719, in lstsq
+    b1 = _asarray_validated(b, check_finite=check_finite)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/scipy/_lib/_util.py", line 468, in _asarray_validated
+    a = toarray(a)
+        ^^^^^^^^^^
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/numpy/lib/_function_base_impl.py", line 673, in asarray_chkfinite
+    raise ValueError(
+ValueError: array must not contain infs or NaNs

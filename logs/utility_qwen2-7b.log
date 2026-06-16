@@ -1,0 +1,22 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loaded 200 harmless prompts
+
+=== Clean model ===
+Initializing model: qwen2-7b on device: cuda:0
+Downloading and loading model Qwen/Qwen2.5-7B-Instruct...
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:02<00:06,  2.25s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:03<00:02,  1.41s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:03<00:01,  1.10s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.14it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.08s/it]
+Model loaded successfully.
+Model already loaded.
+Clean PPL=133.18, NLL=4.8917
+
+=== MD baseline (l*=15) ===
+Loaded representations: HL_x=(6000, 28, 3584), HF_x=(260, 28, 3584)
+✓ Adaptive weights ablated (1 groups, 28 layers, group-α={0: 1.0}).
+MD PPL=366.81, ΔNLL=1.0131, p=0.0000
+
+=== Paired t-tests: LAMA vs clean ===
+bo: ΔNLL=-0.4940, t=-30.614, p=0.0000
+rcs: ΔNLL=-0.5397, t=-31.957, p=0.0000
+uniform: ΔNLL=-0.6135, t=-31.390, p=0.0000
+
+Saved to /nas/home/jahin/causal-lama/runs/qwen2-7b/ablation_study/clean_md_utility.json

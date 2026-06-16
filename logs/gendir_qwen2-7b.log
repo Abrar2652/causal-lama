@@ -1,0 +1,45 @@
+Loaded representations: HL_x=(6000, 28, 3584), HF_x=(260, 28, 3584)
+Computing RCS...
+
+Layer grouping (3 groups):
+  Group 0: layers 0-8, rep=layer 7
+  Group 1: layers 9-17, rep=layer 17
+  Group 2: layers 18-27, rep=layer 19
+
+==================================================
+Group 0: layers 0-8, representative layer = 7
+==================================================
+  Training 4x4 SOM (10000 iterations, σ=0.33, lr=0.01)...
+Training SOM...
+SOM training complete.
+  → Generated 16 directions (shape: torch.Size([16, 3584]))
+  → Direction norms: min=6.9968, max=10.4867, mean=8.4011
+
+==================================================
+Group 1: layers 9-17, representative layer = 17
+==================================================
+  Training 4x4 SOM (10000 iterations, σ=0.33, lr=0.01)...
+Training SOM...
+SOM training complete.
+  → Generated 16 directions (shape: torch.Size([16, 3584]))
+  → Direction norms: min=30.4234, max=45.1930, mean=38.6848
+
+==================================================
+Group 2: layers 18-27, representative layer = 19
+==================================================
+  Training 4x4 SOM (10000 iterations, σ=0.33, lr=0.01)...
+Training SOM...
+SOM training complete.
+  → Generated 16 directions (shape: torch.Size([16, 3584]))
+  → Direction norms: min=48.1184, max=75.5749, mean=63.9975
+[✓] Group 0: saved 16 directions to /nas/home/jahin/causal-lama/runs/qwen2-7b/generate_directions/lama_som4x4_sigma0.33_groups3_group0_directions.pt
+[✓] Group 1: saved 16 directions to /nas/home/jahin/causal-lama/runs/qwen2-7b/generate_directions/lama_som4x4_sigma0.33_groups3_group1_directions.pt
+[✓] Group 2: saved 16 directions to /nas/home/jahin/causal-lama/runs/qwen2-7b/generate_directions/lama_som4x4_sigma0.33_groups3_group2_directions.pt
+[✓] Metadata saved to /nas/home/jahin/causal-lama/runs/qwen2-7b/generate_directions/lama_som4x4_sigma0.33_groups3_metadata.json
+
+==================================================
+LAMA direction generation complete for qwen2-7b
+  Groups: 3
+  Total directions: 48
+  Saved to: /nas/home/jahin/causal-lama/runs/qwen2-7b/generate_directions
+==================================================

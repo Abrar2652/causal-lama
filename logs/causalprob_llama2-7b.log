@@ -1,0 +1,48 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loaded representations: HL_x=(6000, 32, 4096), HF_x=(260, 32, 4096)
+Initializing model: llama2-7b on device: cuda:0
+Downloading and loading model meta-llama/Llama-2-7b-chat-hf...
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 28.20it/s]
+Model loaded successfully.
+refusal_token_id=[306]  prompts=159
+baseline P_refuse (no ablation) = 0.9842
+  layer  0  RCS=0.926  P_refuse=0.9844  ΔP=-0.0002
+  layer  1  RCS=0.794  P_refuse=0.9806  ΔP=+0.0036
+  layer  2  RCS=0.864  P_refuse=0.9833  ΔP=+0.0009
+  layer  3  RCS=0.984  P_refuse=0.9828  ΔP=+0.0014
+  layer  4  RCS=0.833  P_refuse=0.9838  ΔP=+0.0005
+  layer  5  RCS=0.837  P_refuse=0.9826  ΔP=+0.0016
+  layer  6  RCS=0.746  P_refuse=0.9820  ΔP=+0.0022
+  layer  7  RCS=0.754  P_refuse=0.9831  ΔP=+0.0011
+  layer  8  RCS=0.781  P_refuse=0.9779  ΔP=+0.0063
+  layer  9  RCS=0.947  P_refuse=0.9677  ΔP=+0.0165
+  layer 10  RCS=1.102  P_refuse=0.9781  ΔP=+0.0062
+  layer 11  RCS=1.272  P_refuse=0.9769  ΔP=+0.0074
+  layer 12  RCS=1.607  P_refuse=0.9730  ΔP=+0.0112
+  layer 13  RCS=2.171  P_refuse=0.9234  ΔP=+0.0608
+  layer 14  RCS=2.315  P_refuse=0.9634  ΔP=+0.0208
+  layer 15  RCS=2.454  P_refuse=0.9696  ΔP=+0.0147
+  layer 16  RCS=2.355  P_refuse=0.9778  ΔP=+0.0064
+  layer 17  RCS=2.341  P_refuse=0.9774  ΔP=+0.0068
+  layer 18  RCS=2.264  P_refuse=0.9769  ΔP=+0.0073
+  layer 19  RCS=2.198  P_refuse=0.9799  ΔP=+0.0043
+  layer 20  RCS=2.085  P_refuse=0.9774  ΔP=+0.0068
+  layer 21  RCS=2.072  P_refuse=0.9802  ΔP=+0.0040
+  layer 22  RCS=2.054  P_refuse=0.9792  ΔP=+0.0051
+  layer 23  RCS=2.034  P_refuse=0.9830  ΔP=+0.0012
+  layer 24  RCS=1.962  P_refuse=0.9837  ΔP=+0.0005
+  layer 25  RCS=1.958  P_refuse=0.9808  ΔP=+0.0034
+  layer 26  RCS=1.996  P_refuse=0.9840  ΔP=+0.0002
+  layer 27  RCS=2.035  P_refuse=0.9788  ΔP=+0.0054
+  layer 28  RCS=2.013  P_refuse=0.9830  ΔP=+0.0013
+  layer 29  RCS=2.015  P_refuse=0.9837  ΔP=+0.0005
+  layer 30  RCS=2.073  P_refuse=0.9786  ΔP=+0.0056
+  layer 31  RCS=1.904  P_refuse=0.9844  ΔP=-0.0002
+
+================ CAUSAL (refusal-prob) ================
+Spearman(RCS, ΔP_refuse)      = 0.4663  (p=7.15e-03)  95%CI[0.150,0.711]
+Spearman(norm, ΔP_refuse)     = -0.0700
+partial(RCS,ΔP | norm)        = 0.6251  (p=1.31e-04)  <-- NON-CIRCULARITY
+baseline P_refuse=0.984  ΔP range [-0.000,+0.061]
+VERDICT: WEAK; non-circularity survives
+saved -> logs/causal_refusalprob_llama2-7b.json

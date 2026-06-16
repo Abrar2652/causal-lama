@@ -1,0 +1,6 @@
+=== gemma2 BO done ===
+
+gemma2 ablation seed=42 PID=3732452 GPU=0
+gemma2 ablation seed=1 PID=3732453 GPU=1
+gemma2 ablation seed=2 PID=3732454 GPU=2
+=== gemma2 ABLATION COMPLETE ===

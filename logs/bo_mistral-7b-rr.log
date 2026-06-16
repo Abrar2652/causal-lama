@@ -1,0 +1,124 @@
+/nas/home/jahin/causal-lama/lama_optuna_search.py:296: ExperimentalWarning: Argument ``multivariate`` is an experimental feature. The interface can change in the future.
+  sampler = optuna.samplers.TPESampler(
+/nas/home/jahin/causal-lama/lama_optuna_search.py:296: ExperimentalWarning: Argument ``group`` is an experimental feature. The interface can change in the future.
+  sampler = optuna.samplers.TPESampler(
+[I 2026-06-04 07:34:38,425] A new study created in memory with name: lama_mistral-7b-rr
+Loaded representations: HL_x=(6000, 32, 4096), HF_x=(260, 32, 4096)
+[✓] Loaded group 0: 16 directions from /nas/home/jahin/causal-lama/runs/mistral-7b-rr/generate_directions/lama_som4x4_sigma0.33_groups3_group0_directions.pt
+[✓] Loaded group 1: 16 directions from /nas/home/jahin/causal-lama/runs/mistral-7b-rr/generate_directions/lama_som4x4_sigma0.33_groups3_group1_directions.pt
+[✓] Loaded group 2: 16 directions from /nas/home/jahin/causal-lama/runs/mistral-7b-rr/generate_directions/lama_som4x4_sigma0.33_groups3_group2_directions.pt
+
+============================================================
+LAMA Bayesian Optimization
+  Model: mistral-7b-rr
+  Groups: 3
+  Dirs per group: 3
+  Trials: 48
+  Optimize α: True
+  Seed: 42
+  Directions pre-loaded: 48 total
+============================================================
+
+  0%|          | 0/48 [00:00<?, ?it/s]`torch_dtype` is deprecated! Use `dtype` instead!
+Initializing model: mistral-7b-rr on device: cuda:0
+Downloading and loading model GraySwanAI/Mistral-7B-Instruct-RR...
+
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s][A
+Loading checkpoint shards:  33%|███▎      | 1/3 [00:10<00:20, 10.16s/it][A
+Loading checkpoint shards:  67%|██████▋   | 2/3 [00:18<00:09,  9.36s/it][A
+Loading checkpoint shards: 100%|██████████| 3/3 [00:24<00:00,  7.68s/it][ALoading checkpoint shards: 100%|██████████| 3/3 [00:24<00:00,  8.22s/it]
+                                        0%|          | 0/48 [00:32<?, ?it/s]                                        0%|          | 0/48 [00:32<?, ?it/s]  0%|          | 0/48 [00:32<?, ?it/s]
+[W 2026-06-04 07:35:11,103] Trial 0 failed with parameters: {'g0_dir0': 5, 'g0_dir1': 15, 'g0_dir2': 11, 'g1_dir0': 9, 'g1_dir1': 2, 'g1_dir2': 2, 'g2_dir0': 0, 'g2_dir1': 13, 'g2_dir2': 9, 'alpha_0': 0.37880816071925244, 'alpha_1': 0.01178543878871447, 'alpha_2': 0.5211323239086364, 'alpha_3': 0.45448721161642985, 'alpha_4': 0.12133595292710814, 'alpha_5': 0.11156316852708371, 'alpha_6': 0.13428020919070302, 'alpha_7': 0.34645817279041347, 'alpha_8': 0.6430601326533337, 'alpha_9': 0.7727780074568463, 'alpha_10': 0.6873581562142551, 'alpha_11': 0.8221290331633405, 'alpha_12': 0.5765785189494275, 'alpha_13': 0.6323293108998969, 'alpha_14': 0.6498358813020115, 'alpha_15': 0.6798740277616379, 'alpha_16': 0.8599300466959247, 'alpha_17': 0.4374413346372673, 'alpha_18': 0.6315573807321604, 'alpha_19': 0.7106094916151557, 'alpha_20': 0.3113035168492946, 'alpha_21': 0.7138144222285163, 'alpha_22': 0.3872594931825357, 'alpha_23': 0.29367597561204456, 'alpha_24': 0.960376499385119, 'alpha_25': 0.9733509782371738, 'alpha_26': 0.8499262109265363, 'alpha_27': 0.45241785178285415, 'alpha_28': 0.2619181090908262, 'alpha_29': 0.7162347977616679, 'alpha_30': 0.4677530186636307, 'alpha_31': 0.2607129367037107} because of the following error: OutOfMemoryError('CUDA out of memory. Tried to allocate 32.00 MiB. GPU 0 has a total capacity of 47.45 GiB of which 32.38 MiB is free. Process 3622319 has 16.49 GiB memory in use. Process 3622321 has 7.19 GiB memory in use. Including non-PyTorch memory, this process has 7.72 GiB memory in use. Process 3622320 has 16.02 GiB memory in use. Of the allocated memory 7.56 GiB is allocated by PyTorch, and 3.72 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)').
+Traceback (most recent call last):
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/optuna/study/_optimize.py", line 206, in _run_trial
+    value_or_values = func(trial)
+                      ^^^^^^^^^^^
+  File "/nas/home/jahin/causal-lama/lama_optuna_search.py", line 189, in _lama_objective
+    return evaluate_lama_attack(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/nas/home/jahin/causal-lama/lama_optuna_search.py", line 85, in evaluate_lama_attack
+    llm = load_model(model_name, device)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nas/home/jahin/causal-lama/models/load_models.py", line 44, in load_model
+    return models[model_name](device=device)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nas/home/jahin/causal-lama/models/language_models.py", line 531, in __init__
+    super().__init__(model_name, system_prompt, device, quantization_config)
+  File "/nas/home/jahin/causal-lama/models/language_models.py", line 20, in __init__
+    self.load_model()
+  File "/nas/home/jahin/causal-lama/models/language_models.py", line 71, in load_model
+    self.model.to(self.device)
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/transformers/modeling_utils.py", line 4343, in to
+    return super().to(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1174, in to
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 780, in _apply
+    module._apply(fn)
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 780, in _apply
+    module._apply(fn)
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 780, in _apply
+    module._apply(fn)
+  [Previous line repeated 2 more times]
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 805, in _apply
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1160, in convert
+    return t.to(
+           ^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 32.00 MiB. GPU 0 has a total capacity of 47.45 GiB of which 32.38 MiB is free. Process 3622319 has 16.49 GiB memory in use. Process 3622321 has 7.19 GiB memory in use. Including non-PyTorch memory, this process has 7.72 GiB memory in use. Process 3622320 has 16.02 GiB memory in use. Of the allocated memory 7.56 GiB is allocated by PyTorch, and 3.72 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+[W 2026-06-04 07:35:11,146] Trial 0 failed with value None.
+Traceback (most recent call last):
+  File "/nas/home/jahin/causal-lama/lama_optuna_search.py", line 405, in <module>
+    run_lama_optimization(args)
+  File "/nas/home/jahin/causal-lama/lama_optuna_search.py", line 307, in run_lama_optimization
+    study.optimize(objective, n_trials=args.trials, n_jobs=1, show_progress_bar=True)
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/optuna/study/study.py", line 516, in optimize
+    _optimize(
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/optuna/study/_optimize.py", line 68, in _optimize
+    _optimize_sequential(
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/optuna/study/_optimize.py", line 165, in _optimize_sequential
+    frozen_trial_id = _run_trial(study, func, catch)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/optuna/study/_optimize.py", line 263, in _run_trial
+    raise func_err
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/optuna/study/_optimize.py", line 206, in _run_trial
+    value_or_values = func(trial)
+                      ^^^^^^^^^^^
+  File "/nas/home/jahin/causal-lama/lama_optuna_search.py", line 189, in _lama_objective
+    return evaluate_lama_attack(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/nas/home/jahin/causal-lama/lama_optuna_search.py", line 85, in evaluate_lama_attack
+    llm = load_model(model_name, device)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nas/home/jahin/causal-lama/models/load_models.py", line 44, in load_model
+    return models[model_name](device=device)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nas/home/jahin/causal-lama/models/language_models.py", line 531, in __init__
+    super().__init__(model_name, system_prompt, device, quantization_config)
+  File "/nas/home/jahin/causal-lama/models/language_models.py", line 20, in __init__
+    self.load_model()
+  File "/nas/home/jahin/causal-lama/models/language_models.py", line 71, in load_model
+    self.model.to(self.device)
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/transformers/modeling_utils.py", line 4343, in to
+    return super().to(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1174, in to
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 780, in _apply
+    module._apply(fn)
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 780, in _apply
+    module._apply(fn)
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 780, in _apply
+    module._apply(fn)
+  [Previous line repeated 2 more times]
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 805, in _apply
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/nas/home/jahin/.local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1160, in convert
+    return t.to(
+           ^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 32.00 MiB. GPU 0 has a total capacity of 47.45 GiB of which 32.38 MiB is free. Process 3622319 has 16.49 GiB memory in use. Process 3622321 has 7.19 GiB memory in use. Including non-PyTorch memory, this process has 7.72 GiB memory in use. Process 3622320 has 16.02 GiB memory in use. Of the allocated memory 7.56 GiB is allocated by PyTorch, and 3.72 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+[mistral-7b-rr] BO DONE
