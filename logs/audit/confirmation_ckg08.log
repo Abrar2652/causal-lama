@@ -1,0 +1,45 @@
+[2026-10-31 10:18:54] host=ckg08 device=cuda:3  STEP 1 extraction
+[2026-10-31 10:24:39] extraction rc=0
+[2026-10-31 10:24:39] tensors present:
+total 2453956
+drwxr-xr-x 2 jahin div20       1024 Oct 31 10:24 .
+drwxr-xr-x 5 jahin div20       1536 Oct 31 10:19 ..
+-rw-r--r-- 1 jahin div20  104367270 Oct 31 10:24 HFx_train.pt
+-rw-r--r-- 1 jahin div20 2408449190 Oct 31 10:24 HLx_train.pt
+
+=== STEP 2: EMPIRICAL PERMUTATION NULL (200 relabelings) ===
+loaded HF=(260, 28, 3584) HL=(6000, 28, 3584)
+observed profile vs logs/rcs_analysis_qwen2-7b.json: max|diff|=1.466e+00  -> DIFFERS FROM CACHE
+  WARNING: the regenerated activations do not reproduce the published profile.
+  Report this deviation; do not present the null as a check on the published table.
+  layer 1/28  layer 2/28  layer 3/28  layer 4/28  layer 5/28  layer 6/28  layer 7/28  layer 8/28  layer 9/28  layer 10/28  layer 11/28  layer 12/28  layer 13/28  layer 14/28  layer 15/28  layer 16/28  layer 17/28  layer 18/28  layer 19/28  layer 20/28  layer 21/28  layer 22/28  layer 23/28  layer 24/28  layer 25/28  layer 26/28  layer 27/28  layer 28/28
+200 relabelings x 28 layers in 6.1s
+
+observed mean RCS 0.4536   null 0.07450   ratio 6.1x
+Gini     observed 0.0524   null 0.0324 [0.0135,0.0652]   tail p 0.100
+n80/L    observed 0.786   null 0.800   tail p 0.600
+
+This tests whether ANY harmful-vs-harmless signal exists, not whether it is
+refusal-specific. See rebuttal_artifacts/matched_controls/BLOCKED.md.
+wrote /nas/home/jahin/causal-lama/rebuttal_artifacts/permutation_null/results_empirical_qwen2-7b.json
+[2026-10-31 10:24:57] empirical null rc=0
+
+=== STEP 3: ALTERNATIVE NORMALIZATIONS (hgpB W3) ===
+loaded HF=(260, 28, 3584) HL=(6000, 28, 3584)
+regenerated RCS vs published: max|diff|=1.4663  Spearman=-0.8347
+
+normalization            rho(causal)     vs RCS partial|raw gap
+raw_gap                       0.626     +1.372           --
+rcs_harmful_spread           -0.747         --       -0.524
+harmless_spread              -0.753     -0.006       -0.539
+pooled_spread                -0.758     -0.011       -0.549
+max_spread                   -0.753     -0.006       -0.539
+geometric_mean_spread        -0.758     -0.011       -0.549
+pooled_std_trace             -0.765     -0.019       -0.567
+snr_fisher                   -0.765     -0.019       -0.567
+
+wrote /nas/home/jahin/causal-lama/rebuttal_artifacts/verification/alt_normalizations_qwen2-7b.csv
+wrote per-layer profiles for every variant
+[2026-10-31 10:25:08] alt normalizations rc=0
+
+[2026-10-31 10:25:08] CONFIRMATION PIPELINE COMPLETE

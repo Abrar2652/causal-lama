@@ -51,10 +51,25 @@ causal-lama/
 │   ├── dataset/                     # Data loading + pre-computed representations
 │   └── utils/                       # Ablation utilities (weighted ablation)
 │
+├── Audit, Controls, and Additional Experiments
+│   ├── analysis/                    # 32 scripts: matched controls, permutation nulls,
+│   │                                #   base-vs-aligned, joint multi-layer causal ablation
+│   ├── results/                     # json/csv/npz outputs, one folder per experiment
+│   │   ├── matched_controls/        #   refusal-specificity controls
+│   │   ├── joint_causal/            #   joint multi-layer ablation + random-direction control
+│   │   ├── permutation_null/        #   label-permutation null distributions
+│   │   └── verification/            #   per-table reproduction audits
+│   ├── docs/                        # the findings, each with guards and failure modes
+│   ├── tables/rebuttal_tables.tex   # 8 paper-ready LaTeX tables
+│   └── logs/audit/                  # run logs for every experiment above
+│
 ├── README.md
 ├── requirements.txt
 └── .gitignore
 ```
+
+See **[`docs/README.md`](docs/README.md)** for the index, and the section below for what these
+experiments found.
 
 ---
 
@@ -139,6 +154,15 @@ The `create_representation_dataset.py` script automatically downloads from Huggi
 - **[tatsu-lab/alpaca](https://huggingface.co/datasets/tatsu-lab/alpaca)** — harmless prompts (6000 selected)
 
 These are downloaded automatically on first run. You need internet access and a HuggingFace token.
+
+> **Correction (2026-11-01).** The RCS results reported in the paper were **not** produced from
+> the 4000 SORRY-Bench prompts. Every extraction log records `harmful=260 harmless=6000`: the
+> harmful class is the 260-prompt in-repo split in `dataset/processed/harmful_train.json`.
+> Re-extracting from that split reproduces the published per-layer profile to
+> `max|diff| = 2.0e-4` (Spearman 1.0000), with layer-0 RCS agreeing to eight decimal places, so
+> the source is identified beyond coincidence. Every per-layer statistic therefore rests on 260
+> samples, not 4000. Details and the reproduction in
+> **[`docs/data_source.md`](docs/data_source.md)**.
 
 ### C. Representation Tensors ⚠️ (Must Be Generated — Requires GPU)
 
@@ -415,6 +439,60 @@ For GPU access without a local GPU:
 | Cohen's d | `compute_rcs_statistics()` | Effect size per layer |
 | Gini coefficient | `compute_rcs_statistics()` | RCS concentration measure |
 | n80 (layers for 80% RCS) | `compute_rcs_statistics()` | Distribution concentration |
+
+---
+
+## Audit, Controls, and Additional Experiments
+
+Everything in this section was run against the released code and the cached artifacts, and every
+number traces to a file under `results/`. Each write-up in `docs/` states its guards and its
+failure modes, including where the audit contradicts the paper.
+
+| Finding | Write-up |
+|---|---|
+| **The paper misstates its own data.** Reported RCS rests on 260 in-repo harmful prompts, not 4000 SORRY-Bench. Confirmed by reproduction to `2.0e-4`. | [`docs/data_source.md`](docs/data_source.md) |
+| **Label-permutation null, on the paper's own activations.** Observed RCS sits 18.7x above it; tail p = 0.000 on both concentration statistics. The closed form predicts 0.0634, the measurement gives 0.0640. | [`docs/permutation_null.md`](docs/permutation_null.md) |
+| **Refusal specificity is narrower than claimed.** Matching away prompt length and register leaves the profile intact, but no single statistic is refusal-specific: a benign register contrast reaches 11x the null and ties the published Gini, and a pure random split correlates with the published profile at +0.844. What *is* specific is the combination of large magnitude with late mass (0.582 of depth, disjoint from all eight benign intervals, widest of which reaches 0.531). | [`docs/matched_controls.md`](docs/matched_controls.md) |
+| **Base versus aligned splits the claim in two.** A checkpoint never trained to refuse reaches 60.2% of the aligned mean RCS at 11.4x the null, so score *magnitude* is not evidence of refusal. But that separation is flat (52.3% of the Gini, mass at chance depth) while alignment's own increment runs from ~0 in layers 0-4 to +1.005 at layer 18, so the late *concentration* is built by alignment. | [`docs/matched_controls.md`](docs/matched_controls.md) |
+| **Joint multi-layer causal ablation**, the experiment the title rests on. The best single layer accounts for only 25.1% of the joint effect; k=2-3 layer sets are super-additive at ~1.3x; RCS-selected sets beat raw-norm-selected ones by 8x at matched k=3; a random-direction control moves refusal by <0.001. | [`docs/joint_causal.md`](docs/joint_causal.md) |
+| **The MD baseline comparison is a matched control, not a reproduction** of Piras et al. (2026). It uses a top-k direction heuristic and an unconstrained source-layer rule. Comparisons should be framed as isolating two design axes within a matched pipeline. | [`docs/baseline_fidelity.md`](docs/baseline_fidelity.md) |
+| **A hardware fault worth knowing about.** On one host, GPU inference silently mutated model weights in VRAM: 12 of 340 parameters changed during a no-grad forward, by up to 23%, with no NaN and no error. Affected extractions are quarantined. | [`docs/gpu_weight_corruption.md`](docs/gpu_weight_corruption.md) |
+
+### What this changes in the claims
+
+- **Magnitude claims must be dropped, not softened.** 60.2% of RCS magnitude is present before
+  any refusal training.
+- **The layer-distribution claim is better supported than it was**, and now rests on the
+  alignment difference and on joint ablation rather than on the aligned profile alone: no single
+  layer holds more than 7.4% of what alignment adds, and the best single layer accounts for only
+  25.1% of the joint causal effect.
+- **Normalization does not matter much.** Seven alternative denominators for Eq. (2) agree to
+  within 0.006 in rank correlation, so RCS is not a *distinguished* choice.
+
+Full index, including the reviewer-by-reviewer notes and the execution log, in
+[`docs/README.md`](docs/README.md).
+
+### Reproducing
+
+```bash
+# controls and nulls (CPU, minutes)
+python3 analysis/permutation_null_empirical.py --model qwen2-7b --n_perm 200
+python3 analysis/matched_controls.py
+python3 analysis/nonrefusal_controls.py
+python3 analysis/deep_benign_contrasts.py
+python3 analysis/length_matched_depth.py
+
+# base versus aligned (needs both checkpoints)
+python3 analysis/base_vs_aligned.py --device cuda:0
+python3 analysis/analyze_base_vs_aligned.py
+
+# joint multi-layer causal ablation (GPU)
+python3 analysis/joint_causal_ablation.py --model_name qwen2-7b --device cuda:0
+python3 analysis/random_direction_control.py --model_name qwen2-7b --device cuda:0
+
+# regenerate the LaTeX tables
+python3 analysis/make_tex_tables.py
+```
 
 ---
 

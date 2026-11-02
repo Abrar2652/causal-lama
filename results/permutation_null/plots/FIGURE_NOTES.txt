@@ -1,0 +1,22 @@
+null_vs_observed_profiles
+  TAKEAWAY: every observed RCS profile lies 12x-48x above the permuted-label null, so the
+  breadth of RCS mass is a real harmful-harmless signal and not a consequence of RCS being
+  nonnegative. Gray band = 2.5-97.5%% of 200 relabelings; dashed = null median; blue = observed.
+  y-axis is logarithmic because observed and null differ by nearly two orders of magnitude.
+
+null_vs_observed_concentration
+  TAKEAWAY: on both concentration statistics all nine observed profiles fall outside the
+  null's 95%% band, in the direction of MORE concentration than chance (higher Gini, lower
+  n80/L), so "distributed" does not mean "indistinguishable from flat".
+  Empirical tail probability was 0.000 for every model at 200 relabelings.
+
+Numbers behind the panels
+  Qwen2.5-7B      obs_mean_RCS=1.1977 null=0.06396 ratio=18.7x | Gini obs=0.1881 null=0.0090 [0.0027,0.0316] | n80/L obs=0.679 null=0.821 [0.821,0.821]
+  Qwen2.5-3B      obs_mean_RCS=1.2646 null=0.06412 ratio=19.7x | Gini obs=0.2078 null=0.0113 [0.0040,0.0371] | n80/L obs=0.694 null=0.805 [0.806,0.806]
+  Llama-2-7B      obs_mean_RCS=1.6483 null=0.06458 ratio=25.5x | Gini obs=0.2000 null=0.0145 [0.0038,0.0479] | n80/L obs=0.656 null=0.810 [0.781,0.812]
+  Llama-3.1-8B    obs_mean_RCS=1.5080 null=0.06433 ratio=23.4x | Gini obs=0.1925 null=0.0123 [0.0034,0.0412] | n80/L obs=0.656 null=0.811 [0.781,0.812]
+  Gemma2-9B       obs_mean_RCS=1.2443 null=0.06406 ratio=19.4x | Gini obs=0.2256 null=0.0110 [0.0031,0.0388] | n80/L obs=0.643 null=0.808 [0.786,0.810]
+  Mistral-7B-RR   obs_mean_RCS=3.0608 null=0.06808 ratio=45.0x | Gini obs=0.2314 null=0.0349 [0.0042,0.1040] | n80/L obs=0.656 null=0.799 [0.750,0.812]
+  DeepSeek-R1-7B  obs_mean_RCS=0.8189 null=0.06361 ratio=12.9x | Gini obs=0.0837 null=0.0036 [0.0023,0.0082] | n80/L obs=0.750 null=0.821 [0.821,0.821]
+  Ministral-8B    obs_mean_RCS=1.1647 null=0.06383 ratio=18.2x | Gini obs=0.1318 null=0.0063 [0.0025,0.0191] | n80/L obs=0.722 null=0.805 [0.806,0.806]
+  GPT-oss-20B     obs_mean_RCS=0.7916 null=0.06363 ratio=12.4x | Gini obs=0.1104 null=0.0041 [0.0024,0.0095] | n80/L obs=0.750 null=0.833 [0.833,0.833]

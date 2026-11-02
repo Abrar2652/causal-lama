@@ -1,0 +1,2 @@
+model,L,d,eff_rank,achieved_pr,obs_rcs_mean,obs_rcs_peak,null_rcs_mean,null_rcs_q97.5,rcs_ratio_obsmean_over_null,obs_gini,null_gini_mean,null_gini_q97.5,gini_tail_p,obs_n80_over_L,null_n80_over_L_mean,null_n80_over_L_q2.5,n80_tail_p,obs_peak_over_mean,null_peak_over_mean_mean,null_peak_over_mean_q97.5,calib_max_abs_err
+Qwen2.5-7B,28,3584,20,20.0,1.1977,1.8955,0.02084,0.03634,57.5,0.1881,0.0537,0.0921,0.0,0.679,0.785,0.75,0.0,1.583,1.2,1.359,2.15e-02

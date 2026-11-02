@@ -1,0 +1,36 @@
+/nas/home/jahin/causal-lama/rebuttal_artifacts/scripts/deep_benign_contrasts.py:136: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  H = torch.load(os.path.join(HOLD, "HLholdout_train.pt")).numpy().astype(np.float32)
+/nas/home/jahin/causal-lama/rebuttal_artifacts/scripts/deep_benign_contrasts.py:140: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  HFp = torch.load(os.path.join(PUB, "HFx_train.pt")).numpy().astype(np.float32)
+/nas/home/jahin/causal-lama/rebuttal_artifacts/scripts/deep_benign_contrasts.py:141: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  HLp = torch.load(os.path.join(PUB, "HLx_train.pt")).numpy().astype(np.float32)
+holdout (7000, 28, 3584)  published (260, 28, 3584)/(6000, 28, 3584)
+[check] rcs_fast vs lama_rcs.compute_rcs max|diff|=1.073e-06
+[check] vs published logs max|diff|=2.017e-04
+
+the paper's own contrast:
+  refusal_published        n=260/ 6000 mean=1.1976 peak=L19[19,20] com=0.582[0.577,0.587] gini=0.1881 18.9x rho=+1.000
+
+shares: moral=0.028 multistep=0.189 lookup=0.402 negative=0.027
+
+deep-but-benign contrasts, formed inside the held-out harmless pool:
+  topic_moral_benign       n=197/ 6000 mean=0.2421 peak=L21[0,27] com=0.506[0.493,0.517] gini=0.0363 3.3x rho=+0.329
+  reasoning_multistep      n=260/ 2813 mean=0.3310 peak=L17[17,17] com=0.509[0.500,0.518] gini=0.0856 5.1x rho=+0.436
+  valence_negative         n=188/ 6000 mean=0.2326 peak=L18[6,27] com=0.515[0.502,0.525] gini=0.0347 3.1x rho=+0.882
+
+the original lexical contrasts, now with depth intervals:
+  topic_code               n=260/ 6000 mean=0.5079 peak=L4 [3,4] com=0.479[0.473,0.486] gini=0.0606 8.0x rho=-0.571
+  register_question        n=260/ 6000 mean=0.6976 peak=L5 [5,5] com=0.408[0.403,0.414] gini=0.1877 11.0x rho=-0.778
+  length_extreme           n=260/ 6000 mean=0.4436 peak=L5 [5,6] com=0.428[0.422,0.437] gini=0.1465 7.0x rho=-0.789
+  random_split             n=260/ 6000 mean=0.0680 peak=L18[0,27] com=0.519[0.482,0.531] gini=0.0476 1.1x rho=+0.844
+
+depth separation from the published contrast:
+  topic_moral_benign       com gap +0.076  disjoint
+  reasoning_multistep      com gap +0.073  disjoint
+  valence_negative         com gap +0.068  disjoint
+  topic_code               com gap +0.104  disjoint
+  register_question        com gap +0.174  disjoint
+  length_extreme           com gap +0.154  disjoint
+  random_split             com gap +0.064  disjoint
+
+wrote /nas/home/jahin/causal-lama/rebuttal_artifacts/matched_controls/deep_benign_qwen2-7b.{json,csv}

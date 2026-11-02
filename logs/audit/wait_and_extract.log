@@ -1,0 +1,2 @@
+[2026-10-31 08:40:01] waiting for a GPU with >= 16000 MiB free (max 10800s)
+[2026-10-31 10:13:57] waiter stopped by operator: switching to multi-GPU sharded extraction (no single card has 16 GiB free)

@@ -1,0 +1,41 @@
+[shard] devices={7: '11GiB', 6: '4GiB', 1: '4GiB'} total_usable=20.0GiB
+/nas/home/jahin/.local/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (1.26.5) or chardet (7.2.0)/charset_normalizer (3.4.4) doesn't match a supported version!
+  warnings.warn(
+Initializing model: qwen2-7b on device: cuda:7
+[shard] loading Qwen/Qwen2.5-7B-Instruct fp16 sharded ...
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:04,  1.66s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:03<00:03,  1.91s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:05<00:01,  1.76s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:06<00:00,  1.65s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:06<00:00,  1.70s/it]
+[shard] loaded; embedding device=cuda:1
+[shard] device_map={"model.embed_tokens": 1, "model.layers.0": 1, "model.layers.1": 1, "model.layers.2": 1, "model.layers.3": 1, "model.layers.4": 6, "model.layers.5": 6, "model.layers.6": 6, "model.layers.7": 6, "model.layers.8": 6, "model.layers.9": 6, "model.layers.10": 6, "model.layers.11": 6, "model.layers.12": 6, "model.layers.13": 7, "model.layers.14": 7, "model.layers.15": 7, "model.layers.16": 7, "model.layers.17": 7, "model.layers.18": 7, "model.layers.19": 7, "model.layers.20": 7, "model.layers.21": 7, "model.layers.22": 7, "model.layers.23": 7, "model.layers.24": 7, "model.layers.25": 7, "model.layers.26": 7, "model.layers.27": 7, "model.norm": 7, "model.rotary_emb": 7, "lm_head": 7}
+[processed source] harmful=260 harmless=6000
+[harmless] 6000 prompts, token_pos=-1
+[harmless] 250/6000  18.43 it/s  eta=5.2 min
+[harmless] 500/6000  19.15 it/s  eta=4.8 min
+[harmless] 750/6000  19.46 it/s  eta=4.5 min
+[harmless] 1000/6000  19.62 it/s  eta=4.2 min
+[harmless] 1250/6000  19.67 it/s  eta=4.0 min
+[harmless] 1500/6000  19.70 it/s  eta=3.8 min
+[harmless] 1750/6000  19.74 it/s  eta=3.6 min
+[harmless] 2000/6000  19.78 it/s  eta=3.4 min
+[harmless] 2250/6000  19.83 it/s  eta=3.2 min
+[harmless] 2500/6000  19.85 it/s  eta=2.9 min
+[harmless] 2750/6000  19.88 it/s  eta=2.7 min
+[harmless] 3000/6000  19.89 it/s  eta=2.5 min
+[harmless] 3250/6000  19.87 it/s  eta=2.3 min
+[harmless] 3500/6000  19.88 it/s  eta=2.1 min
+[harmless] 3750/6000  19.88 it/s  eta=1.9 min
+[harmless] 4000/6000  19.88 it/s  eta=1.7 min
+[harmless] 4250/6000  19.88 it/s  eta=1.5 min
+[harmless] 4500/6000  19.89 it/s  eta=1.3 min
+[harmless] 4750/6000  19.90 it/s  eta=1.0 min
+[harmless] 5000/6000  19.90 it/s  eta=0.8 min
+[harmless] 5250/6000  19.90 it/s  eta=0.6 min
+[harmless] 5500/6000  19.91 it/s  eta=0.4 min
+[harmless] 5750/6000  19.92 it/s  eta=0.2 min
+[harmless] 6000/6000  19.92 it/s  eta=0.0 min
+[save] HLx_train.pt (6000, 28, 3584)
+[harmful] 260 prompts, token_pos=-1
+[harmful] 250/260  19.71 it/s  eta=0.0 min
+[harmful] 260/260  19.73 it/s  eta=0.0 min
+[save] HFx_train.pt (260, 28, 3584)
+[DONE] /nas/home/jahin/causal-lama/dataset/representations/qwen2-7b_processed_confirm

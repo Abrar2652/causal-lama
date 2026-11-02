@@ -1,0 +1,36 @@
+Loaded representations: HL_x=(6000, 28, 3584), HF_x=(260, 28, 3584)
+[rcs] L=28 D=3584 peak=L19
+[shard] {7: '11GiB', 6: '4GiB', 1: '4GiB'}
+/nas/home/jahin/.local/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (1.26.5) or chardet (7.2.0)/charset_normalizer (3.4.4) doesn't match a supported version!
+  warnings.warn(
+`torch_dtype` is deprecated! Use `dtype` instead!
+Initializing model: qwen2-7b on device: cuda:7
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:04,  1.63s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:03<00:03,  1.63s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:04<00:01,  1.62s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:06<00:00,  1.54s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:06<00:00,  1.57s/it]
+[shard] embedding device=cuda:1
+[baseline] P_refuse=0.8648 (joint run reported 0.8648, |dev|=0.00e+00)
+  [random dir k=1 draw 0] P_refuse=0.8647 dP=+0.0001 H_harmless=0.573
+  [random dir k=1 draw 1] P_refuse=0.8666 dP=-0.0018 H_harmless=0.573
+  [random dir k=1 draw 2] P_refuse=0.8647 dP=+0.0001 H_harmless=0.572
+  => k=1: real dP=0.1756  random dP=-0.0005 +- 0.0009
+  [random dir k=2 draw 0] P_refuse=0.8638 dP=+0.0010 H_harmless=0.573
+  [random dir k=2 draw 1] P_refuse=0.8638 dP=+0.0010 H_harmless=0.572
+  [random dir k=2 draw 2] P_refuse=0.8651 dP=-0.0003 H_harmless=0.572
+  => k=2: real dP=0.5077  random dP=0.0006 +- 0.0006
+  [random dir k=3 draw 0] P_refuse=0.8654 dP=-0.0006 H_harmless=0.573
+  [random dir k=3 draw 1] P_refuse=0.8639 dP=+0.0009 H_harmless=0.570
+  [random dir k=3 draw 2] P_refuse=0.8635 dP=+0.0013 H_harmless=0.568
+  => k=3: real dP=0.7436  random dP=0.0005 +- 0.0008
+  [random dir k=5 draw 0] P_refuse=0.8662 dP=-0.0014 H_harmless=0.573
+  [random dir k=5 draw 1] P_refuse=0.8652 dP=-0.0004 H_harmless=0.573
+  [random dir k=5 draw 2] P_refuse=0.8617 dP=+0.0031 H_harmless=0.575
+  => k=5: real dP=0.8308  random dP=0.0004 +- 0.0020
+  [random dir k=8 draw 0] P_refuse=0.8648 dP=-0.0000 H_harmless=0.569
+  [random dir k=8 draw 1] P_refuse=0.8657 dP=-0.0009 H_harmless=0.574
+  [random dir k=8 draw 2] P_refuse=0.8642 dP=+0.0006 H_harmless=0.576
+  => k=8: real dP=0.8445  random dP=-0.0001 +- 0.0006
+  [random dir k=14 draw 0] P_refuse=0.8650 dP=-0.0002 H_harmless=0.574
+  [random dir k=14 draw 1] P_refuse=0.8634 dP=+0.0014 H_harmless=0.570
+  [random dir k=14 draw 2] P_refuse=0.8635 dP=+0.0013 H_harmless=0.571
+  => k=14: real dP=0.8546  random dP=0.0008 +- 0.0007
+
+wrote /nas/home/jahin/causal-lama/rebuttal_artifacts/joint_causal/random_direction_qwen2-7b.{json,csv}

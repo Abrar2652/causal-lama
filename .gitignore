@@ -1,0 +1,15 @@
+# Hidden-state representation tensors: ~400 MB per model per split.
+# Regenerate with `python create_representation_dataset.py --model_name <alias>`.
+dataset/representations/
+
+# Python bytecode
+__pycache__/
+*.pyc
+
+# Submitted PDFs and local packaging, repository root only
+/*.pdf
+/*.zip
+
+# Local working copy of the audit tree. Its contents are published in a consolidated
+# form under analysis/, results/, docs/, tables/ and logs/audit/.
+rebuttal_artifacts/

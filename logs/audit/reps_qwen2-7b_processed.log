@@ -1,0 +1,36 @@
+/nas/home/jahin/.local/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (1.26.5) or chardet (7.2.0)/charset_normalizer (3.4.4) doesn't match a supported version!
+  warnings.warn(
+`torch_dtype` is deprecated! Use `dtype` instead!
+cuda:0
+Initializing model: qwen2-7b on device: cuda:0
+Downloading and loading model Qwen/Qwen2.5-7B-Instruct...
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:04,  1.37s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:02<00:02,  1.05s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.15it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.25it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.13it/s]
+Traceback (most recent call last):
+  File "/nas/home/jahin/causal-lama/create_representation_dataset.py", line 142, in <module>
+    result = convert_samples(
+  File "/nas/home/jahin/causal-lama/create_representation_dataset.py", line 115, in convert_samples
+    model = load_model(model_name, device=device)
+  File "/nas/home/jahin/causal-lama/models/load_models.py", line 44, in load_model
+    return models[model_name](device=device)
+  File "/nas/home/jahin/causal-lama/models/language_models.py", line 639, in __init__
+    super().__init__(model_name, system_prompt, device, quantization_config)
+  File "/nas/home/jahin/causal-lama/models/language_models.py", line 20, in __init__
+    self.load_model()
+  File "/nas/home/jahin/causal-lama/models/language_models.py", line 71, in load_model
+    self.model.to(self.device)
+  File "/nas/home/jahin/.local/lib/python3.10/site-packages/transformers/modeling_utils.py", line 4343, in to
+    return super().to(*args, **kwargs)
+  File "/nas/home/jahin/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1355, in to
+    return self._apply(convert)
+  File "/nas/home/jahin/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    module._apply(fn)
+  File "/nas/home/jahin/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    module._apply(fn)
+  File "/nas/home/jahin/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    module._apply(fn)
+  [Previous line repeated 2 more times]
+  File "/nas/home/jahin/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 942, in _apply
+    param_applied = fn(param)
+  File "/nas/home/jahin/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1341, in convert
+    return t.to(
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 130.00 MiB. GPU 0 has a total capacity of 23.55 GiB of which 137.94 MiB is free. Process 3936865 has 676.00 MiB memory in use. Process 1110362 has 17.55 GiB memory in use. Including non-PyTorch memory, this process has 5.18 GiB memory in use. Of the allocated memory 4.98 GiB is allocated by PyTorch, and 5.79 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

@@ -1,0 +1,6 @@
+model,our_l_star,published_l_star,layer_matches,our_dir_ids,published_dir_ids,our_n_dirs,published_n_dirs,dir_ids_match,our_md_asr,published_md_asr,md_reproduction_gap_pp,our_best_lama_asr,our_best_lama_variant,best_lama_vs_published_md_pp
+Qwen2.5-7B,15,18,False,0-1-2-3-4-5-6,10-3-5-2-4-6-13,7,7,False,84.28,95.97,-11.69,93.08,LAMA-RCS,-2.89
+Qwen2.5-3B,23,24,False,0-1-2-3-4-5-6,2-7-9-14-8,7,5,False,83.86,93.71,-9.85,89.31,LAMA-BO,-4.4
+Llama-2-7B,11,13,False,0-1-2-3-4-5-6,8-11-4-7-13-6-12,7,7,False,5.66,59.11,-53.45,0.0,LAMA-* (all at floor),-59.11
+Gemma2-9B,23,23,True,0-1-2-3-4-5-6,7-6-15-2-13-3,7,6,False,95.6,96.27,-0.67,68.55,LAMA-uniform,-27.72
+Mistral-7B-RR,23,23,True,0-1-2-3-4-5-6,9-5-6-3-1,7,5,False,8.18,25.79,-17.61,20.13,LAMA-uniform,-5.66

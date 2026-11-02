@@ -1,0 +1,6 @@
+statistic,observed_harmful,harmless_control_mean,harmless_control_q2.5,harmless_control_q97.5,tail_p
+per_layer_rcs_mean,1.19759,0.06405,0.05052,0.08452,0.0
+gini,0.18807,0.03983,0.02028,0.07501,0.0
+n80_over_L,0.67857,0.79464,0.78571,0.82143,0.0
+peak_over_mean,1.58265,1.1482,1.06575,1.31439,
+cv,0.32844,0.07232,0.03787,0.13392,

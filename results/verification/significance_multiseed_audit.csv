@@ -1,0 +1,13 @@
+model,variant,n_seeds_used,n_behaviors,published_delta_pp,paper_mark,paper_claim,recomputed_delta_pp,ci_lo_pp,ci_hi_pp,paired_boot_p,wilcoxon_p,behavior_level_verdict,agreement_with_paper
+Qwen2.5-7B,LAMA-uniform,3,159,3.8,dagger,p<0.10,3.77,-3.14,10.69,0.3098,0.27332,not significant,DIFFERS
+Qwen2.5-7B,LAMA-RCS,3,159,8.8,star,p<0.05,8.81,2.52,15.09,0.006,0.00604,significant (p<0.05),AGREES
+Qwen2.5-7B,LAMA-BO,3,159,1.9,none,n.s.,1.89,-4.4,8.18,0.61,0.54851,not significant,AGREES
+Qwen2.5-3B,LAMA-uniform,3,159,3.4,dagger,p<0.10,3.35,-1.47,8.18,0.1762,0.17606,not significant,DIFFERS
+Qwen2.5-3B,LAMA-RCS,3,159,2.9,none,n.s.,2.94,-2.52,8.39,0.2914,0.23218,not significant,AGREES
+Qwen2.5-3B,LAMA-BO,3,159,5.5,star,p<0.05,5.45,0.42,10.69,0.035,0.02617,significant (p<0.05),AGREES
+Gemma2-9B,LAMA-uniform,3,159,-27.0,star,p<0.05,-27.04,-34.59,-20.13,0.0,0.0,significant (p<0.05),AGREES
+Gemma2-9B,LAMA-RCS,3,159,-45.3,star,p<0.05,-45.28,-53.46,-37.11,0.0,0.0,significant (p<0.05),AGREES
+Gemma2-9B,LAMA-BO,3,159,-40.3,star,p<0.05,-40.25,-47.8,-32.7,0.0,0.0,significant (p<0.05),AGREES
+Mistral-7B-RR,LAMA-uniform,3,159,,none,n.s.,7.97,2.94,13.0,0.0014,0.003,significant (p<0.05),DIFFERS
+Mistral-7B-RR,LAMA-RCS,3,159,,none,n.s.,-4.61,-7.97,-1.68,0.0038,0.00451,significant (p<0.05),DIFFERS
+Mistral-7B-RR,LAMA-BO,3,159,,none,n.s.,0.0,-3.77,4.19,1.0,1.0,not significant,AGREES

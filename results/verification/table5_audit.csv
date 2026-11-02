@@ -1,0 +1,11 @@
+model,setting,published_ppl,artifact_ppl,abs_diff,published_dNLL,source_artifact,note
+Qwen2.5-7B,Clean,82.43,82.4348,0.005,,ablation_seed42.json:utility_clean,
+Qwen2.5-7B,MD,366.81,366.8097,0.0,1.493,md_utility.json,
+Qwen2.5-7B,LAMA-uniform,72.11,72.1087,0.001,-0.134,clean_md_utility.json,
+Qwen2.5-7B,LAMA-RCS,77.64,77.6373,0.003,-0.06,clean_md_utility.json,
+Qwen2.5-7B,LAMA-BO,81.26,81.2632,0.003,-0.015,clean_md_utility.json,
+Qwen2.5-3B,Clean,71.87,71.8652,0.005,,ablation_seed42.json:utility_clean,
+Qwen2.5-3B,MD,188.27,188.2673,0.003,0.963,md_utility.json,
+Qwen2.5-3B,LAMA-BO,91.07,91.0681,0.002,0.237,ablation_seed42.json:utility_lama_bo,
+Qwen2.5-3B,LAMA-uniform,90.62,90.622,0.002,0.232,logs/chain_qwen2-3b.log (log line only),"NO RELEASED JSON: written to runs/qwen2-3b/lama_utility/, a directory absent from the repo"
+Qwen2.5-3B,LAMA-RCS,90.59,90.592,0.002,0.232,logs/chain_qwen2-3b.log (log line only),"NO RELEASED JSON: written to runs/qwen2-3b/lama_utility/, a directory absent from the repo"

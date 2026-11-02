@@ -1,0 +1,38 @@
+{
+  "argv": [
+    "rebuttal_artifacts/scripts/permutation_null_calibrated.py",
+    "--models",
+    "all",
+    "--n_perm",
+    "200",
+    "--n_f",
+    "260",
+    "--n_l",
+    "6000",
+    "--eff_rank",
+    "isotropic",
+    "--tag",
+    "corrected"
+  ],
+  "models": [
+    "qwen2-7b",
+    "qwen2-3b",
+    "llama2-7b",
+    "llama31-8b",
+    "gemma2-9b",
+    "mistral-7b-rr",
+    "deepseek-r1-qwen-7b",
+    "ministral-8b",
+    "gpt-oss-20b"
+  ],
+  "n_perm": 200,
+  "n_f": 260,
+  "n_l": 6000,
+  "eff_rank": "isotropic",
+  "rho": 0.9,
+  "seed": 42,
+  "numpy": "2.2.6",
+  "python": "3.10.12",
+  "analytic_null_mean": 0.06335188742948517,
+  "note": "Calibrated simulation, not a measurement of the paper's activations."
+}

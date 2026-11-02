@@ -1,0 +1,3 @@
+model,mean_rcs,ratio_obs_over_null,gini,n80_over_L,peak_layer,peak_q2.5,peak_q97.5,com_depth,com_q2.5,com_q97.5
+aligned,1.2050,17.3,0.1857,0.6786,19,19,20,0.5809,0.5755,0.5856
+base,0.7284,10.5,0.0959,0.7857,20,20,20,0.5350,0.5293,0.5399
