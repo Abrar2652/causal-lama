@@ -1,0 +1,13 @@
+model,variant,seed,n,md_asr_pct,variant_asr_pct,diff_pp,mcnemar_p,mcnemar_method,paired_boot_p,boot_ci_lo_pp,boot_ci_hi_pp,verdict
+Qwen2.5-7B,LAMA-uniform,42,159,84.28,88.05,3.77,0.36131,chi2 (continuity-corrected),0.3098,-3.14,10.69,not significant
+Qwen2.5-7B,LAMA-RCS,42,159,84.28,93.08,8.81,0.010787,chi2 (continuity-corrected),0.006,2.52,15.09,variant > MD (p<0.05)
+Qwen2.5-7B,LAMA-BO,42,159,84.28,86.16,1.89,0.689157,chi2 (continuity-corrected),0.61,-4.4,8.18,not significant
+Qwen2.5-3B,LAMA-uniform,42,159,84.28,85.53,1.26,0.850107,chi2 (continuity-corrected),0.7902,-5.03,7.55,not significant
+Qwen2.5-3B,LAMA-RCS,42,159,84.28,85.53,1.26,0.844519,chi2 (continuity-corrected),0.7762,-5.03,7.55,not significant
+Qwen2.5-3B,LAMA-BO,42,159,84.28,88.05,3.77,0.307456,exact binomial,0.2444,-2.52,10.06,not significant
+Gemma2-9B,LAMA-uniform,42,159,95.6,68.55,-27.04,0.0,chi2 (continuity-corrected),0.0,-34.59,-20.13,MD > variant (p<0.05)
+Gemma2-9B,LAMA-RCS,42,159,95.6,50.31,-45.28,0.0,chi2 (continuity-corrected),0.0,-53.46,-37.11,MD > variant (p<0.05)
+Gemma2-9B,LAMA-BO,42,159,95.6,55.35,-40.25,0.0,chi2 (continuity-corrected),0.0,-47.8,-32.7,MD > variant (p<0.05)
+Mistral-7B-RR,LAMA-uniform,42,159,0.0,0.0,0.0,1.0,none (no discordant pairs),1.0,0.0,0.0,not significant
+Mistral-7B-RR,LAMA-RCS,42,159,0.0,0.0,0.0,1.0,none (no discordant pairs),1.0,0.0,0.0,not significant
+Mistral-7B-RR,LAMA-BO,42,159,0.0,0.0,0.0,1.0,none (no discordant pairs),1.0,0.0,0.0,not significant

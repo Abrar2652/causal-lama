@@ -1,0 +1,4 @@
+source,shapes,L,peak_layer,mean_rcs,peak_rcs,gini,n80_over_L,peak_over_mean,cv,spearman_vs_published,spearman_vs_published_reversed,max_abs_dev_vs_published,mean_abs_dev_vs_published
+PUBLISHED (logs/rcs_analysis_qwen2-7b.json),n/a (cached profile),28,19,1.1977,1.8955,0.1881,0.6786,1.5826,0.3285,1.0,-0.7351,0.0,0.0
+"processed (260 harmful / 6000 harmless, in-repo split)","HF=(260, 28, 3584) HL=(6000, 28, 3584)",28,19,1.1976,1.8954,0.1881,0.6786,1.5826,0.3284,1.0,-0.7351,0.0002,0.0001
+"sorry-bench (4000 harmful / 6000 harmless, as the paper states)","HF=(3996, 28, 3584) HL=(6000, 28, 3584)",28,6,0.9724,1.2339,0.1175,0.75,1.2689,0.2099,-0.7887,0.8867,1.086,0.5265

@@ -1,0 +1,26 @@
+{
+  "argv": [
+    "rebuttal_artifacts/scripts/permutation_null_calibrated.py",
+    "--models",
+    "qwen2-7b",
+    "--n_perm",
+    "200",
+    "--eff_rank",
+    "100",
+    "--tag",
+    "effrank100"
+  ],
+  "models": [
+    "qwen2-7b"
+  ],
+  "n_perm": 200,
+  "n_f": 4000,
+  "n_l": 6000,
+  "eff_rank": "100",
+  "rho": 0.9,
+  "seed": 42,
+  "numpy": "2.2.6",
+  "python": "3.10.12",
+  "analytic_null_mean": 0.02041343522047224,
+  "note": "Calibrated simulation, not a measurement of the paper's activations."
+}

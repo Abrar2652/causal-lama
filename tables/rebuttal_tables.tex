@@ -1,0 +1,393 @@
+% ============================================================================
+% Rebuttal tables -- AAAI-27 submission 43976
+% Generated from . Every number traces to a CSV in
+% results/verification/ or results/permutation_null/.
+% Requires: booktabs. Define once in the preamble if not already present:
+%   \newcommand{\insight}[1]{\par\smallskip\noindent\textit{Insight.} #1}
+%   \newcommand{\failuremode}[1]{\par\smallskip\noindent\textit{Failure mode.} #1}
+% ============================================================================
+
+
+\begin{table}[t]
+\centering\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrrrrrrr}
+\toprule
+& & \multicolumn{2}{c}{RCS magnitude} & \multicolumn{2}{c}{Gini} & \multicolumn{2}{c}{$n_{80}/L$} \\
+\cmidrule(lr){3-4}\cmidrule(lr){5-6}\cmidrule(lr){7-8}
+Model & $L$ & obs.\ mean & vs.\ null & obs. & null & obs. & null \\
+\midrule
+Qwen2.5-7B & 28 & 1.1977 & 18.7$\times$ & 0.1881 & 0.009 & 0.679 & 0.821 \\
+Qwen2.5-3B & 36 & 1.2646 & 19.7$\times$ & 0.2078 & 0.0113 & 0.694 & 0.805 \\
+Llama-2-7B & 32 & 1.6483 & 25.5$\times$ & 0.2 & 0.0145 & 0.656 & 0.81 \\
+Llama-3.1-8B & 32 & 1.508 & 23.4$\times$ & 0.1925 & 0.0123 & 0.656 & 0.811 \\
+Gemma2-9B & 42 & 1.2443 & 19.4$\times$ & 0.2256 & 0.011 & 0.643 & 0.808 \\
+Mistral-7B-RR & 32 & 3.0608 & 45.0$\times$ & 0.2314 & 0.0349 & 0.656 & 0.799 \\
+DeepSeek-R1-7B & 28 & 0.8189 & 12.9$\times$ & 0.0837 & 0.0036 & 0.75 & 0.821 \\
+Ministral-8B & 36 & 1.1647 & 18.2$\times$ & 0.1318 & 0.0063 & 0.722 & 0.805 \\
+GPT-oss-20B & 24 & 0.7916 & 12.4$\times$ & 0.1104 & 0.0041 & 0.75 & 0.833 \\
+\bottomrule
+\end{tabular}
+\caption{Observed RCS profiles against a permuted-label null. The null draws 200 relabelings
+of the pooled representations, preserving class sizes, applied identically at every layer.
+Under relabeling the per-layer scale cancels between the numerator and the denominator of
+Eq.~(2), so the expected score reduces to $\sqrt{1/n_{\mathrm{hf}}+1/n_{\mathrm{hl}}}=0.0634$
+for the $260/6000$ split actually used, independent of layer, model, and representation
+geometry. For Qwen2.5-7B this closed form is confirmed against a permutation null measured on
+the model's own activations, which gives $0.0640$, a relative agreement of $0.95\%$. The
+empirical tail probability is $0.000$ for every model on both concentration statistics.}
+\label{tab:permutation-null}
+\end{table}
+
+\insight{The null is flat by construction, which fixes the reference points a reader needs:
+a chance profile has Gini near zero and $n_{80}/L$ near $0.8$. Measured against it, every model
+separates on two independent axes. Magnitudes sit 12--45$\times$ above chance, so RCS carrying
+mass at every layer reflects a real harmful--harmless signal rather than the statistic being
+nonnegative. And every profile is \emph{more} concentrated than chance, not
+indistinguishable from flat. The honest reading is therefore ``distributed but measurably
+non-uniform'', which is precisely the regime in which per-layer adaptive weighting has
+something to exploit; a genuinely flat profile would make adaptive weighting pointless.}
+
+\failuremode{A label permutation destroys class structure outright, so it tests whether
+\emph{any} harmful-versus-harmless signal exists, never whether that signal is refusal
+specific. Because the two classes are drawn from different corpora, SORRY-Bench and Alpaca,
+topic, style, and source remain perfectly collinear with the label, and this control cannot
+separate them. A matched-provenance contrast or a base-versus-aligned comparison would be
+needed, and neither is available here. Note also that the ordering of models by Gini does not
+track the ordering by LAMA benefit: Mistral-7B-RR has the highest observed Gini and the largest
+null spread, yet is excluded from the alignment analysis entirely.}
+
+
+\begin{table}[t]
+\centering\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{llccr}
+\toprule
+Model & Variant & Published CI & Pooled-independent & dev.\ (pp) \\
+\midrule
+Qwen2.5-7B & MD & [80.7, 87.3] & [80.9, 87.4] & 0.22 \\
+Qwen2.5-7B & L-uniform & [84.8, 90.7] & [85.1, 90.8] & 0.32 \\
+Qwen2.5-7B & L-RCS & [90.4, 95.0] & [90.8, 95.2] & 0.38 \\
+Qwen2.5-7B & L-BO & [82.8, 89.0] & [83.0, 89.3] & 0.31 \\
+Qwen2.5-3B & MD & [80.3, 86.9] & [80.5, 87.0] & 0.2 \\
+Qwen2.5-3B & L-uniform & [83.9, 89.9] & [84.1, 90.1] & 0.25 \\
+Qwen2.5-3B & L-RCS & [83.5, 89.5] & [83.6, 89.7] & 0.23 \\
+Qwen2.5-3B & L-BO & [86.2, 91.8] & [86.4, 92.0] & 0.23 \\
+\bottomrule
+\end{tabular}
+\caption{Reconstructing the published confidence intervals. Resampling
+$(\mathrm{behavior},\mathrm{seed})$ pairs as independent units reproduces them to a median
+deviation of $0.28$ percentage points, whereas the hierarchical scheme described in the
+supplement deviates by $2.48$ and a seed-averaged behavior bootstrap by $2.34$.}
+\label{tab:ci-procedure}
+\end{table}
+
+\insight{The reconstruction identifies which estimator actually produced the reported
+intervals, and it is not the one described. Pooling behavior--seed pairs multiplies the
+effective sample size by the number of seeds, narrowing intervals by roughly $\sqrt{3}$.
+Correcting this is cheap and strengthens rather than weakens the paper: the two starred
+comparisons survive a behavior-level paired test, so the headline claims never depended on the
+inflation, and saying so preempts the objection.}
+
+\failuremode{The inflation is not benign, because the seeds are close to degenerate. On
+Qwen2.5-7B and Gemma2-9B all three seeds yield identical per-behavior judgments, so the extra
+$2n$ observations carry no information at all. This follows mechanically from greedy decoding
+combined with a direction collection held fixed across configurations, and it means the
+reported seed-to-seed stability is a property of the decoding rule rather than evidence of
+robustness. Any future claim of multi-seed robustness needs a source of variation that
+actually varies.}
+
+
+\begin{table}[t]
+\centering\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{llrrcrl}
+\toprule
+Model & Variant & Pub.\ $\Delta$ & Recomp. & 95\% CI & $p$ & Verdict \\
+\midrule
+Qwen2.5-7B & L-uniform & 3.8$^{\dagger}$ & 3.77 & [-3.14, 10.69] & 0.3098 & \textbf{does not hold} \\
+Qwen2.5-7B & L-RCS & 8.8$^{*}$ & 8.81 & [2.52, 15.09] & 0.006 & holds \\
+Qwen2.5-7B & L-BO & 1.9 & 1.89 & [-4.4, 8.18] & 0.61 & holds \\
+Qwen2.5-3B & L-uniform & 3.4$^{\dagger}$ & 3.35 & [-1.47, 8.18] & 0.1762 & \textbf{does not hold} \\
+Qwen2.5-3B & L-RCS & 2.9 & 2.94 & [-2.52, 8.39] & 0.2914 & holds \\
+Qwen2.5-3B & L-BO & 5.5$^{*}$ & 5.45 & [0.42, 10.69] & 0.035 & holds \\
+Gemma2-9B & L-uniform & -27.0$^{*}$ & -27.04 & [-34.59, -20.13] & 0.0 & holds \\
+Gemma2-9B & L-RCS & -45.3$^{*}$ & -45.28 & [-53.46, -37.11] & 0.0 & holds \\
+Gemma2-9B & L-BO & -40.3$^{*}$ & -40.25 & [-47.8, -32.7] & 0.0 & holds \\
+\bottomrule
+\end{tabular}
+\caption{Table~4 deltas re-tested with the behavior as the statistical unit, using a paired
+bootstrap over seed-averaged per-behavior outcomes ($n=159$). Point estimates reproduce to
+$0.05$ percentage points.}
+\label{tab:corrected-significance}
+\end{table}
+
+\insight{Both starred claims survive, and all three Gemma2-9B negative results survive
+decisively at $p<10^{-4}$, so the paper's substantive conclusions do not rest on the interval
+defect. The correction also sharpens RQ5. Depth-specific direction construction alone, the
+LAMA-uniform row, is not distinguishable from the control at $p=0.31$, while the full
+LAMA-RCS configuration is. Read together with the benign-cost decomposition, where
+LAMA-uniform at $\alpha_l=1$ already captures the entire perplexity reduction, the two design
+axes divide cleanly: grouped directions buy the utility, RCS weighting buys the attack
+success. That is a more specific claim than ``both components contribute'' and each half is
+separately supported.}
+
+\failuremode{The two marginal daggers do not survive and should be removed. More broadly,
+with $159$ behaviors a paired bootstrap resolves differences of roughly $6$ percentage points;
+the $+3.8$ and $+3.4$ effects are simply below what this evaluation can detect, and no
+reanalysis of the same judgments will change that. Distinguishing them needs more behaviors,
+not more seeds.}
+
+
+\begin{table}[t]
+\centering\small
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{lrrrrrr}
+\toprule
+& \multicolumn{3}{c}{Spearman $\rho$ with depth} & \multicolumn{3}{c}{Dynamic range} \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}
+Model & gap & spread & RCS & gap & spread & RCS \\
+\midrule
+Qwen2.5-7B & 0.9962 & 0.9978 & 0.8358 & 307.2$\times$ & 156.6$\times$ & 3.05$\times$ \\
+Qwen2.5-3B & 0.9838 & 0.9977 & 0.852 & 213.5$\times$ & 89.0$\times$ & 3.11$\times$ \\
+Llama-2-7B & 1.0 & 1.0 & 0.5821 & 977.9$\times$ & 475.9$\times$ & 3.29$\times$ \\
+Gemma2-9B & 0.9342 & 0.9139 & 0.9606 & 648.2$\times$ & 155.9$\times$ & 4.34$\times$ \\
+Mistral-7B-RR & 0.9985 & 1.0 & 0.1954 & 19388.9$\times$ & 4648.0$\times$ & 7.41$\times$ \\
+Llama-3.1-8B & 1.0 & 1.0 & 0.7577 & 1567.3$\times$ & 705.5$\times$ & 3.0$\times$ \\
+DeepSeek-R1-7B & 0.9425 & 0.9064 & 0.7499 & 83.6$\times$ & 54.4$\times$ & 1.67$\times$ \\
+Ministral-8B & 1.0 & 1.0 & 0.4831 & 1618.1$\times$ & 1113.8$\times$ & 2.43$\times$ \\
+GPT-oss-20B & 0.9087 & 0.9087 & 0.7035 & 336.4$\times$ & 318.9$\times$ & 2.14$\times$ \\
+\bottomrule
+\end{tabular}
+\caption{What the denominator of Eq.~(2) removes. The raw centroid gap and the harmful
+intra-class spread each grow almost monotonically with depth across one to four orders of
+magnitude; their ratio does not.}
+\label{tab:depth-trend}
+\end{table}
+
+\insight{This answers directly what information RCS retains beyond the raw centroid norm: the
+normalization removes a depth trend that the numerator and denominator share. Both grow
+together by up to four orders of magnitude, while RCS varies only $1.7$--$7.4\times$ and is far
+less tied to depth. Llama-2-7B is the clean demonstration, where the raw gap correlates
+$-0.07$ with the causal profile while RCS reaches $0.466$, rising to $0.625$ once the gap is
+controlled for. A statistic dominated by residual-stream scale cannot rank layers; removing
+that scale is what makes a ranking possible at all.}
+
+\failuremode{The residual is a predictive association on some models, not proof of refusal
+specificity and not a general causal ranking. On Gemma2-9B the partial correlation is $-0.219$,
+so after removing the shared component nothing causal remains, which is the same model where
+LAMA-RCS fails. Depth-detrending is therefore necessary for a usable ranking but plainly not
+sufficient for a reliable one. The normalizations a reader may ask about, by the harmless
+spread and by the pooled spread among others, are now computed directly from the regenerated
+activations and reported in Table~\ref{tab:alt-normalizations}.}
+
+
+\begin{table}[t]
+\centering\small
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{lrrr}
+\toprule
+Normalization & $\rho$ (causal) & $\Delta$ vs.\ RCS & partial $\mid$ gap \\
+\midrule
+\texttt{raw\_gap} & 0.7438 & -0.1292 & --- \\
+\texttt{rcs\_harmful\_spread} & 0.873 & --- & 0.6847 \\
+\texttt{harmless\_spread} & 0.8708 & -0.0022 & 0.6776 \\
+\texttt{pooled\_spread} & 0.8686 & -0.0044 & 0.6712 \\
+\texttt{max\_spread} & 0.8708 & -0.0022 & 0.6776 \\
+\texttt{geometric\_mean\_spread} & 0.867 & -0.006 & 0.6665 \\
+\texttt{pooled\_std\_trace} & 0.8725 & -0.0005 & 0.6822 \\
+\texttt{snr\_fisher} & 0.8725 & -0.0005 & 0.6822 \\
+\bottomrule
+\end{tabular}
+\caption{Sensitivity of the layer ranking to the denominator of Eq.~(2), computed on
+regenerated Qwen2.5-7B activations that reproduce the published profile to
+$2{\times}10^{-4}$ (Spearman $1.0000$). Column~1 is the rank correlation between each
+normalized profile and the measured causal profile over $L=28$ layers; column~2 its
+difference from RCS; column~3 the partial correlation after controlling for the raw
+centroid gap.}
+\label{tab:alt-normalizations}
+\end{table}
+
+\insight{The conclusion does not depend on which spread is used in the denominator, but it
+does depend on dividing by one. All seven normalized variants land between $0.867$ and
+$0.873$, a spread of $0.006$, while the unnormalized gap reaches only $0.744$. Normalizing is
+worth about $0.13$ in rank correlation; choosing among the normalizers is worth almost nothing.
+The partial correlations tell the same story from the other side: every normalized variant
+retains $0.67$--$0.68$ after the raw gap is controlled for, so they all carry the same
+additional information, and the alternatives carry essentially none that RCS lacks, with
+differences of $-0.0005$ to $-0.006$. This is the strongest available answer to the
+normalization question: RCS is a sufficient choice, and the layer ranking is robust to the
+reviewer's substitutions.}
+
+\failuremode{It also means RCS is not a \emph{distinguished} choice, and the paper should not
+imply that it is. With $L=28$ layers the standard error of a Spearman correlation is roughly
+$1/\sqrt{L-1}\approx0.19$, which is thirty times the largest gap between variants. The ordering
+among the seven is therefore noise, and two of them, \texttt{pooled\_std\_trace} and
+\texttt{snr\_fisher}, are indistinguishable from RCS at $-0.0005$. Any claim that the harmful
+intra-class spread is the principled denominator is unsupported by this evidence; the defensible
+claim is that it is one of several equivalent ones. Two further limits: this is a single model,
+and $\rho$ against the causal profile is an association, so a normalizer that ranks layers well
+here is not thereby shown to identify refusal mechanism.}
+
+
+\begin{table}[t]
+\centering\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lrrrrrrr}
+\toprule
+Contrast & $n_f$ & $n_l$ & mean & peak & Gini & $\rho_{\mathrm{pub}}$ & vs.\ null \\
+\midrule
+\multicolumn{8}{l}{\emph{(a) the refusal contrast, with length and register matched away}} \\
+\textbf{\texttt{published\_equivalent}} & \textbf{260} & \textbf{6000} & \textbf{1.1976} & \textbf{L19} & \textbf{0.1881} & \textbf{1.0000} & \textbf{18.9}$\times$ \\
+\texttt{length\_matched} & 260 & 2331 & 1.2003 & L19 & 0.1867 & 0.9967 & 18.4$\times$ \\
+\texttt{style\_matched} & 260 & 4658 & 1.2246 & L19 & 0.1784 & 0.9956 & 19.2$\times$ \\
+\texttt{length\_and\_style\_matched} & 260 & 1554 & 1.2303 & L19 & 0.1755 & 0.9929 & 18.4$\times$ \\
+\texttt{style\_matched\_symmetric} & 148 & 4658 & 1.3366 & L20 & 0.1687 & 0.9781 & 16.0$\times$ \\
+\texttt{length\_and\_style\_symmetric} & 148 & 882 & 1.3386 & L20 & 0.1674 & 0.9737 & 15.1$\times$ \\
+\midrule
+\multicolumn{8}{l}{\emph{(b) non-refusal contrasts, formed inside a held-out harmless slice}} \\
+\textbf{\texttt{published\_harmful\_vs\_harmless}} & \textbf{260} & \textbf{6000} & \textbf{1.1976} & \textbf{L19} & \textbf{0.1881} & \textbf{1.0000} & \textbf{18.9}$\times$ \\
+\texttt{topic\_code} & 260 & 6000 & 0.5727 & L4 & 0.0580 & -0.5610 & 9.0$\times$ \\
+\texttt{register\_question} & 260 & 6000 & 0.7104 & L5 & 0.1908 & -0.7882 & 11.2$\times$ \\
+\texttt{length\_extreme} & 260 & 6000 & 0.4436 & L5 & 0.1465 & -0.7887 & 7.0$\times$ \\
+\texttt{length\_effectmatched} & 260 & 6000 & 0.0818 & L1 & 0.0752 & -0.8402 & 1.3$\times$ \\
+\texttt{random\_split} & 260 & 6000 & 0.0663 & L26 & 0.0225 & 0.4028 & 1.0$\times$ \\
+\bottomrule
+\end{tabular}
+\caption{Refusal-specificity controls on Qwen2.5-7B. Panel~(a) resamples the harmless class to
+match the harmful token-length histogram stratum by stratum, restricts to the imperative
+register, and does both, on one side and on both sides. Panel~(b) builds each contrast entirely
+inside harmless prompts $6000$--$12999$, held out from the published set, so neither class
+carries refusal content; class sizes are pinned at $260/6000$ so the null is identical.
+$\rho_{\mathrm{pub}}$ is the rank correlation with the published profile.}
+\label{tab:refusal-specificity}
+\end{table}
+
+\insight{Depth, not magnitude, is what carries refusal-specific information. Panel~(a) shows
+the profile is untouched by the obvious confounds: through every matching the peak holds at
+layer $19$ or $20$, Gini moves only from $0.188$ to $0.167$, and $\rho_{\mathrm{pub}}$ never
+falls below $0.974$. Panel~(b) then supplies the discriminator. Every non-refusal contrast is
+\emph{anti}-correlated with the published profile, $\rho_{\mathrm{pub}}$ between $-0.56$ and
+$-0.84$, and every one peaks in layers $4$ to $5$, whereas the refusal contrast peaks at layer
+$19$. Generic semantic and syntactic separability is an early-layer phenomenon; what the
+harmful-versus-harmless comparison tracks is a late-layer one. Length is eliminated outright: a
+length contrast tuned to the same Cliff's delta as the real one, $0.145$ against a target of
+$0.148$, reaches only $1.3\times$ the null against the real contrast's $18.7\times$. The random
+split lands at $1.0\times$, confirming the null by a third independent route after the closed
+form and the permutation test.}
+
+\failuremode{RCS is not exclusively a refusal detector, and the paper should not be read as
+claiming it is. A code-versus-prose topic contrast reaches $9.0\times$ the null and a
+question-versus-imperative register contrast $11.2\times$; any strong semantic contrast produces
+a substantial score. Worse for the concentration argument, the register contrast's Gini of
+$0.1908$ slightly \emph{exceeds} the published $0.1881$, so concentration alone separates
+nothing. The defensible claim is therefore narrower than refusal measurement in general: score
+magnitude and Gini are not refusal specific, and only the location of the mass is. Three limits
+remain. These are one model, the only cached checkpoint. The topic split is keyword based,
+because the \texttt{category} field is uniformly \texttt{"None"} in both training splits. The
+control that settles the magnitude half of the question, an aligned-versus-base comparison on
+identical prompts, has since been run at the full published class sizes of 260 and 6000: a
+checkpoint never trained to refuse reaches $60.2\%$ of the aligned mean RCS, so magnitude
+claims must be dropped rather than softened, while the late concentration is alignment's own and
+survives.}
+
+
+\begin{table}[t]
+\centering\small
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{rrrrr}
+\toprule
+$k$ & layer added & $\Delta P$ & \% of best & joint\,/\,$\Sigma$\,singles \\
+\midrule
+1 & 19 & 0.1756 & 20.4 & 1.000 \\
+2 & 20 & 0.5077 & 59.1 & 1.299 \\
+3 & 18 & 0.7436 & 86.6 & 1.273 \\
+4 & 21 & 0.8067 & 93.9 & -- \\
+5 & 17 & 0.8308 & 96.7 & 1.151 \\
+8 & 16 & 0.8445 & 98.3 & 0.981 \\
+12 & 27 & 0.8589 & 100.0 & -- \\
+14 & 14 & 0.8546 & 99.5 & 0.701 \\
+20 & 7 & 0.8158 & 95.0 & -- \\
+28 & 3 & 0.7965 & 92.7 & -- \\
+\bottomrule
+\end{tabular}
+\caption{Joint multi-layer ablation of Qwen2.5-7B-Instruct, cumulative over layers ranked by
+RCS. $\Delta P$ is the drop in refusal-token probability mass at the first generated position
+over 159 \texttt{harmbench\_test} prompts, so no text is generated and no judge is needed. The
+last column divides the joint effect by the sum of those same layers' individual effects.
+Baseline $P_{\text{refuse}} = 0.8648$; the largest attainable drop is
+$0.8589$ at $k = 12$.}
+\label{tab:joint-causal-curve}
+\end{table}
+
+\insight{This is the causal form of the paper's central claim, and it both supports and narrows
+it. The best \emph{single} layer, L20, removes only
+$25.1\%$ of what joint ablation removes, so
+no layer is the site of refusal and single-layer localization is refuted causally rather than
+by inference. At $k=2$ and $k=3$ the joint effect exceeds the sum of its parts by about
+$30\%$, while still far from the ceiling that saturation would impose, so the layers are
+complementary rather than redundant: refusal is \emph{jointly} encoded, not duplicated in each
+layer. The harness earns this reading by reproducing the paper's own single-layer probe to
+$\max|\mathrm{diff}| = 2.8e-04$ with Spearman
+$0.99945$, and by returning to the
+baseline exactly once every ablation is undone.}
+
+\failuremode{Three layers reach $86.6\%$ of the attainable
+effect and four reach $93.9\%$, against the representational
+$n_{80}/L = 0.679$, which would imply 19 of 28 layers. Causal concentration is roughly six
+times tighter than representational spread, so the title is defensible as ``no single layer
+suffices and the layers act jointly'' and \emph{not} as ``refusal is distributed across the
+network''. The curve is also non-monotone: past $k = 12$ it declines, from
+$0.8589$ to $0.7965$ at $k = 28$, so a uniform
+all-layer intervention is strictly worse than ablating the band. That is a causal argument in
+favor of a layer-selective method which the paper does not currently make, and it also means
+``more ablation is better'' is false.}
+
+
+\begin{table}[t]
+\centering\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{rrrrrr}
+\toprule
+& \multicolumn{4}{c}{choice of layers (refusal direction)} & random dir. \\
+\cmidrule(lr){2-5}\cmidrule(lr){6-6}
+$k$ & top-$k$ RCS & bottom-$k$ & top-$k$ norm & random, mean (best of 5) & at top-$k$ RCS \\
+\midrule
+1 & \textbf{0.1756} & -0.0064 & 0.0247 & 0.0113\,(0.0516) & $-0.0005$ \\
+2 & \textbf{0.5077} & 0.0010 & 0.0721 & 0.1140\,(0.1964) & $+0.0006$ \\
+3 & \textbf{0.7436} & 0.0012 & 0.0921 & 0.1247\,(0.2388) & $+0.0005$ \\
+5 & \textbf{0.8308} & 0.0009 & 0.3548 & 0.2062\,(0.3450) & $+0.0004$ \\
+8 & \textbf{0.8445} & 0.0127 & 0.7735 & 0.3195\,(0.5525) & $-0.0001$ \\
+14 & \textbf{0.8546} & 0.1631 & 0.8546 & 0.5640\,(0.6695) & $+0.0008$ \\
+\bottomrule
+\end{tabular}
+\caption{Matched-budget controls for the joint ablation. Every arm ablates exactly $k$ layers,
+so the intervention budget is fixed and only the choice of layers, or of direction, varies. The
+final column holds the layer set at the top-$k$ by RCS and substitutes a random unit direction;
+the ablation normalizes its input, so the magnitude of the weight edit is matched by
+construction.}
+\label{tab:joint-causal-controls}
+\end{table}
+
+\insight{This is what makes the claim causal rather than correlational. At $k = 3$, layers
+chosen by RCS remove $0.7436$ of the refusal mass,
+against $0.0921$ for the layers with the largest
+raw diff-in-means norm, a factor of
+$8.1$; against
+$0.1247$ for random layers and
+$0.2388$ for the luckiest of five draws; and against
+$0.0012$ for the lowest-RCS layers. The raw-norm
+column is the non-circularity control, since RCS shares its numerator with the ablated
+direction, and the normalization earns its place at small $k$. The final column settles the
+remaining objection: a random rank-1 edit at the same layers moves refusal by less than
+$0.001$ at every $k$, so the effect belongs to the direction and not to the perturbation.}
+
+\failuremode{The advantage is confined to small $k$. By $k = 8$ the raw-norm rule has
+essentially caught up, $0.7735$ against
+$0.8445$, and by $k = 14$ the two are identical,
+because every rule saturates once the late band is covered. Any claim that RCS is the better
+layer ranking must therefore be made in the small-$k$ regime an adaptive method actually
+operates in, not as a general property. Ratios against the random-direction column should also
+be avoided: its mean sits within $0.001$ of zero, so the ratios stored in the CSV are
+numerically unstable, and the defensible statement is simply that a random direction does
+nothing.}

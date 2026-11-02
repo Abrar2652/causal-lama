@@ -1,0 +1,33 @@
+[2026-10-31 10:20:22] extraction done; tensors at /nas/home/jahin/causal-lama/dataset/representations/qwen2-7b_processed_confirm
+=== EMPIRICAL PERMUTATION NULL (200 relabelings) ===
+loaded HF=(260, 28, 3584) HL=(6000, 28, 3584)
+observed profile vs logs/rcs_analysis_qwen2-7b.json: max|diff|=2.017e-04  -> MATCHES cache
+  layer 1/28  layer 2/28  layer 3/28  layer 4/28  layer 5/28  layer 6/28  layer 7/28  layer 8/28  layer 9/28  layer 10/28  layer 11/28  layer 12/28  layer 13/28  layer 14/28  layer 15/28  layer 16/28  layer 17/28  layer 18/28  layer 19/28  layer 20/28  layer 21/28  layer 22/28  layer 23/28  layer 24/28  layer 25/28  layer 26/28  layer 27/28  layer 28/28
+200 relabelings x 28 layers in 16.1s
+
+observed mean RCS 1.1976   null 0.06396   ratio 18.7x
+Gini     observed 0.1881   null 0.0407 [0.0194,0.0705]   tail p 0.000
+n80/L    observed 0.679   null 0.795   tail p 0.000
+
+This tests whether ANY harmful-vs-harmless signal exists, not whether it is
+refusal-specific. See rebuttal_artifacts/matched_controls/BLOCKED.md.
+wrote /nas/home/jahin/causal-lama/rebuttal_artifacts/permutation_null/results_empirical_qwen2-7b.json
+[2026-10-31 10:20:51] empirical null rc=0
+=== ALTERNATIVE NORMALIZATIONS (hgpB W3) ===
+loaded HF=(260, 28, 3584) HL=(6000, 28, 3584)
+regenerated RCS vs published: max|diff|=0.0002  Spearman=1.0000
+
+normalization            rho(causal)     vs RCS partial|raw gap
+raw_gap                       0.744     -0.129           --
+rcs_harmful_spread            0.873         --        0.685
+harmless_spread               0.871     -0.002        0.678
+pooled_spread                 0.869     -0.004        0.671
+max_spread                    0.871     -0.002        0.678
+geometric_mean_spread         0.867     -0.006        0.666
+pooled_std_trace              0.872     -0.001        0.682
+snr_fisher                    0.872     -0.001        0.682
+
+wrote /nas/home/jahin/causal-lama/rebuttal_artifacts/verification/alt_normalizations_qwen2-7b.csv
+wrote per-layer profiles for every variant
+[2026-10-31 10:21:03] alt normalizations rc=0
+[2026-10-31 10:21:03] CHAIN COMPLETE

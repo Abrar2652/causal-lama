@@ -1,0 +1,9 @@
+contrast,n_a,n_b,mean_rcs,ratio_obs_over_null,gini,peak_layer,peak_q2.5,peak_q97.5,com_depth,com_q2.5,com_q97.5,spearman_vs_published,cliffs_delta_length,com_overlaps_refusal,note
+refusal_published,260,6000,1.1976,18.9,0.1881,19,19,20,0.5823,0.5769,0.5870,+1.0000,+0.148,,the published harmful-vs-harmless contrast
+topic_moral_benign,197,6000,0.2421,3.3,0.0363,21,0,27,0.5060,0.4930,0.5173,+0.3290,+0.187,False,"benign ethics/values prompts vs the rest: harm-adjacent, moral reasoning, no refusal"
+reasoning_multistep,260,2813,0.3310,5.1,0.0856,17,17,17,0.5093,0.5002,0.5175,+0.4362,+0.115,False,multi-step inference vs simple lookup: a depth-of-processing proxy
+valence_negative,188,6000,0.2326,3.1,0.0347,18,6,27,0.5147,0.5020,0.5248,+0.8823,+0.040,False,negative-affect benign prompts vs the rest
+topic_code,260,6000,0.5079,8.0,0.0606,4,3,4,0.4788,0.4727,0.4857,-0.5714,+0.131,False,code/technical vs prose
+register_question,260,6000,0.6976,11.0,0.1877,5,5,5,0.4080,0.4032,0.4138,-0.7783,-0.080,False,interrogative vs imperative
+length_extreme,260,6000,0.4436,7.0,0.1465,5,5,6,0.4281,0.4221,0.4366,-0.7887,+1.000,False,the 260 longest vs 6000 others
+random_split,260,6000,0.0680,1.1,0.0476,18,0,27,0.5187,0.4818,0.5313,+0.8440,+0.006,False,pure random split: a floor

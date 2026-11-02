@@ -1,0 +1,9 @@
+model,normalization,spearman_vs_causal,delta_vs_rcs,partial_given_raw_gap,n_layers
+qwen2-7b,raw_gap,0.7438,-0.1292,,28
+qwen2-7b,rcs_harmful_spread,0.873,,0.6847,28
+qwen2-7b,harmless_spread,0.8708,-0.0022,0.6776,28
+qwen2-7b,pooled_spread,0.8686,-0.0044,0.6712,28
+qwen2-7b,max_spread,0.8708,-0.0022,0.6776,28
+qwen2-7b,geometric_mean_spread,0.867,-0.006,0.6665,28
+qwen2-7b,pooled_std_trace,0.8725,-0.0005,0.6822,28
+qwen2-7b,snr_fisher,0.8725,-0.0005,0.6822,28

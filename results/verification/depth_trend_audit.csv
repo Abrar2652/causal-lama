@@ -1,0 +1,10 @@
+model,n_layers,spearman_gap_vs_depth,spearman_harmfulspread_vs_depth,spearman_rcs_vs_depth,gap_dynamic_range,spread_dynamic_range,rcs_dynamic_range
+Qwen2.5-7B,28,0.9962,0.9978,0.8358,307.2,156.6,3.05
+Qwen2.5-3B,36,0.9838,0.9977,0.852,213.5,89.0,3.11
+Llama-2-7B,32,1.0,1.0,0.5821,977.9,475.9,3.29
+Gemma2-9B,42,0.9342,0.9139,0.9606,648.2,155.9,4.34
+Mistral-7B-RR,32,0.9985,1.0,0.1954,19388.9,4648.0,7.41
+Llama-3.1-8B,32,1.0,1.0,0.7577,1567.3,705.5,3.0
+DeepSeek-R1-7B,28,0.9425,0.9064,0.7499,83.6,54.4,1.67
+Ministral-8B,36,1.0,1.0,0.4831,1618.1,1113.8,2.43
+GPT-oss-20B,24,0.9087,0.9087,0.7035,336.4,318.9,2.14

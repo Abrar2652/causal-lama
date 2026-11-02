@@ -1,0 +1,7 @@
+control,n_f,n_l,mean_rcs,peak_layer,gini,n80_over_L,cv,spearman_vs_published,max_abs_dev_vs_published,analytic_null_mean,ratio_obs_over_null,harmful_len_mean,harmless_len_mean
+published_equivalent,260,6000,1.1976,19,0.1881,0.6786,0.3284,1.0000,0.0000,0.0634,18.9,12.70,12.18
+length_matched,260,2331,1.2003,19,0.1867,0.6786,0.3259,0.9967,0.0189,0.0654,18.4,12.70,12.62
+style_matched,260,4658,1.2246,19,0.1784,0.7143,0.3116,0.9956,0.0640,0.0637,19.2,12.70,11.98
+length_and_style_matched,260,1554,1.2303,19,0.1755,0.7143,0.3063,0.9929,0.0824,0.0670,18.4,12.70,12.62
+style_matched_symmetric,148,4658,1.3366,20,0.1687,0.7143,0.2936,0.9781,0.2680,0.0835,16.0,12.68,11.98
+length_and_style_symmetric,148,882,1.3386,20,0.1674,0.7143,0.2913,0.9737,0.2697,0.0889,15.1,12.68,12.55

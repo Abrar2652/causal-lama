@@ -1,0 +1,2 @@
+Fetching 11 files:   0%|          | 0/11 [00:00<?, ?it/s]Fetching 11 files:   9%|▉         | 1/11 [00:00<00:08,  1.14it/s]Fetching 11 files:  36%|███▋      | 4/11 [00:38<01:11, 10.24s/it]Fetching 11 files:  55%|█████▍    | 6/11 [00:38<00:29,  5.85s/it]Fetching 11 files:  64%|██████▎   | 7/11 [00:39<00:18,  4.59s/it]Fetching 11 files: 100%|██████████| 11/11 [00:39<00:00,  3.55s/it]
+[DONE] /nas/home/jahin/.cache/huggingface/hub/models--Qwen--Qwen2.5-7B/snapshots/d149729398750b98c0af14eb82c78cfe92750796  in 0.7 min
